@@ -13,10 +13,10 @@ def get_data(train=True, batch_size=128):
         download=True,
         transform=transforms.Compose(
             [
-                transforms.ToPILImage(),
+                #transforms.ToPILImage(),
                 transforms.ToTensor(),
                 transforms.Normalize([0.1307,], [0.3081,],),
             ]
         ),
     )
-    return td.DataLoader(dataset, batch_size=batch_size)
+    return td.DataLoader(dataset, batch_size=batch_size,drop_last=True,)
