@@ -88,12 +88,10 @@ def bit_wise_mutation(y, p):
     for num, i in enumerate(x):
         seed = random.randint(0, len(x))
         if seed < int(len(x) * p):
-            # x[num] *= -1
             if x[num] == 0:
                 x[num] = 1
             else:
                 x[num] = 0
-    # print(y-x)
     return x
 
 
@@ -103,7 +101,6 @@ def bit_wise_mutation_cover(y, p):
     for num, i in enumerate(x):
         seed = random.random() * len(x)
         if seed < int(len(x) * p):
-            # x[num] *= -1
             if x[num] == 0:
                 x[num] = 1
             else:
@@ -116,7 +113,6 @@ def bit_wise_mutation_cover(y, p):
         if seed < len(x) * q:
             if x[num] == 1:
                 x[num] = 0
-    # print(y-x)
     return x
 
 
@@ -170,11 +166,6 @@ def f3(solution):  # 计算最大覆盖点集合,max
 def f4(solution):  # 点个数,min
     return sum(solution)
 
-
-# s1=generate_binary_cover(500)
-# s2=generate_binary(500)
-# print(f3(s1))
-# print(f4(s1))
 
 
 def plot_two_f(f1_values, f2_values, front):

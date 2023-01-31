@@ -18,14 +18,11 @@ matplotlib.use('TkAgg')
 def generate_offsprings(solution_group, front, pm, pc, problem):
     parent_index = []
     if len(front) >= 5:
-        # parent_index=front[-1][:]+front[-2][:]+front[-3]+front[-4]+front[-5]
         parent_index = front[0][:] + front[1][:] + front[2] + front[3] + front[4]
     else:
         for i in front:
             parent_index += i
-    # print(front[-1],parent_index)
     parents = [solution_group[i] for i in parent_index]
-    # print("parents:", len(parents), "solution_group", len(solution_group))
     offsprings = []
     if problem == "regression":
         for i in range(len(parents)):
@@ -355,9 +352,10 @@ def MOEAD_cover(max_gen, times):
 
             # 优秀父辈直接继承
             old_solution = []
-            for k in range(0, 1):
+            for k in range(0, len(front1)):
                 for v in front1[k]:
-                    old_solution.append(v)
+                    if len(old_solution)<Group_size/2:
+                        old_solution.append(v)
                     # print(f2_values[v], end=" ")
 
             solution_group = [solution_group[i] for i in old_solution]

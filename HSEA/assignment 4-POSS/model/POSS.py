@@ -43,13 +43,11 @@ k = 8
 
 @record_time
 def POSS_regression(max_gen, times):
-    # max_gen = 100
     pm = 0.05
     t = times
     path = "data/ionosphere.data"
     Z, DATA, Alpha = read_data_regression(path)
 
-    # times=10
     fitnesses = [0 for i in range(max_gen)]
     evaluations = [i for i in range(max_gen)]
     while (times > 0):
@@ -73,14 +71,11 @@ def POSS_regression(max_gen, times):
                     better = 1
                     break
             if better == 0:
-                # print("Generation number ", current_gen,f1(select_solution),f2(select_solution))
                 new_group.append(select_solution)
                 for i in range(len(solution_group)):
                     if is_better_regression(select_solution, solution_group[i]) == 10:  # 无法比较的
                         new_group.append(solution_group[i])
-                # print("before",len(solution_group),f1(solution_group[0]))
                 solution_group = copy.deepcopy(new_group)
-                # print("after",len(solution_group),f1(solution_group[0]))
                 if f2(select_solution) <= k and f1(select_solution) < best_fitness:
                     best_fitness = f1(select_solution)
                     print("Generation number ", current_gen, "at times ", t - times, best_fitness)

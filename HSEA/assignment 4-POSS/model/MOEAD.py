@@ -12,7 +12,7 @@ population = 100
 group = 200  # 存档数目
 
 pops = []
-EPs = []
+ep = []
 nObj = 2
 theta = 0.1  # 变异的概率
 nVar = 30  # 决策变量个数
@@ -50,47 +50,43 @@ def determinDomination(p):
                 p[i].dominate = True
 
 
-T = max(math.ceil(0.15 * population), 2)
-T = min(T, 15)  # 邻居的数目
+K = max(math.ceil(0.15 * population), 2)
+K = min(K, 15)  # 邻居的数目
 
 
 def genVector2(nObj, npop, T):
-    Lambda = []
+    l = []
     dist = np.zeros((npop, npop))
     for i in range(npop):
         w = np.random.rand(nObj)
         w = w / np.linalg.norm(w)
-        #         w=w/sum(w)
-        Lambda.append(w)
+        l.append(w)
     for i in range(npop - 1):
         for j in range(i + 1, npop):
-            dist[i][j] = dist[j][i] = np.linalg.norm(Lambda[i] - Lambda[j])
-    sp_neighbors = np.argsort(dist, axis=1)
-    sp_neighbors = sp_neighbors[:, :T]
-    return Lambda, sp_neighbors
+            dist[i][j] = dist[j][i] = np.linalg.norm(l[i] - l[j])
+    neighbors = np.argsort(dist, axis=1)
+    neighbors = neighbors[:, :T]
+    return l, neighbors
 
 
-Lambda, sp_neighbors = genVector2(nObj, population, T)
+Lambda, sp_neighbors = genVector2(nObj, population, K)
 
 
-def initPop(npop, nVar, varMin, varMax, fitness):
-    global pops
-    pops = []
-    for i in range(npop):
-        var = varMin + np.random.random(nVar) * (varMax - varMin)
-        cost = fitness(var)
-        pops.append(pop(var, cost))
 
+global pops
+pops = []
 
-initPop(population, nVar, varMin, varMax, ZDT2)
-
+for i in range(population):
+    var = varMin + np.random.random(nVar) * (varMax - varMin)
+    cost = ZDT2(var)
+    pops.append(pop(var, cost))
 z = pops[0].cost
 for p in range(population):
     for j in range(nObj):
         z[j] = min(pops[p].cost[j], z[j])
 z = np.array(z)
 determinDomination(pops)
-EPs = copy.deepcopy([x for x in pops if x.dominate != True])
+ep = copy.deepcopy([x for x in pops if x.dominate != True])
 
 
 def cross_mutation2(p1, p2):
@@ -168,7 +164,6 @@ def generate_next(idx, xk, xl, fitness):
 
 #更新邻域解
 def update_neighbor(idx, y):
-    # 若gy<gx更新,用的权重是邻居的权重
     Bi = sp_neighbors[idx]
     fy = y.cost
     for j in range(len(Bi)):
@@ -185,10 +180,10 @@ def MOEAD():
     for j in range(max_gen):
         if j % 10 == 0:
             print("=" * 10, j, "=" * 10)
-            print(z, len(EPs))
+            print(z, len(ep))
         for i in range(population):
             Bi = sp_neighbors[i]
-            choice = np.random.choice(T, 2, replace=False)  # 选出来的邻居应该不重复
+            choice = np.random.choice(K, 2, replace=False)  # 选出来的邻居应该不重复
             k = Bi[choice[0]]
             l = Bi[choice[1]]
             xk = pops[k]
@@ -204,21 +199,21 @@ def MOEAD():
             update_neighbor(i, y)
             ep = False
             delete = []
-            for k in range(len(EPs)):
-                if (fv_y == EPs[k].cost).all():  # 如果有一样的就不用算了啊
+            for k in range(len(ep)):
+                if (fv_y == ep[k].cost).all():  # 如果有一样的就不用算了啊
                     ep = True
                     break
-                if isDominates(fv_y, EPs[k].cost):
-                    delete.append(EPs[k])
-                elif ep == False and isDominates(EPs[k].cost, fv_y):
+                if isDominates(fv_y, ep[k].cost):
+                    delete.append(ep[k])
+                elif ep == False and isDominates(ep[k].cost, fv_y):
                     ep = True
                     break  # 后面就不用看了，最好也是互不支配
             if len(delete) != 0:
                 for k in range(len(delete)):
-                    EPs.remove(delete[k])
+                    ep.remove(delete[k])
             if ep == False:
-                EPs.append(y)
-            while len(EPs) > group:
-                select = np.random.randint(0, len(EPs))
-                del EPs[select]
+                ep.append(y)
+            while len(ep) > group:
+                select = np.random.randint(0, len(ep))
+                del ep[select]
 
