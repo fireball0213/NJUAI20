@@ -31,13 +31,11 @@ class Loss(nn.Module):
 
     def forward(self, x, x_,mu,logvar,epoch,epoch_num, **otherinputs):
         # 实现loss的计算, 注意处理 **otherinputs 的解析, 以及不同的decode_type对应于不同的loss (10/100)
-
         recon=Loss.recon_loss(self,x,x_)
         if self.decode_type=="AE":
             total_loss=recon
         elif self.decode_type=="VAE" or self.decode_type=="CVAE":
             kl = Loss.kl_div(self,mu,logvar)
-            #print(recon,kl)
             annealing=epoch/epoch_num
             annealing*=0.003
             total_loss=recon+kl*annealing
@@ -52,12 +50,10 @@ def train_epoch(model, train_loader, loss, optimizer,epoch, type,epoch_num):
     for i, (x, y) in enumerate(train_loader):
         # 训练过程的补全 (20/100) 注意考虑不同类型的AE应该有所区别
         x = x.reshape(128, 1, -1)  # (128,1,784)28*28需要展平
-        loss_num=0
         optimizer.zero_grad()
         if type=="AE":
             z, x_ = model(x)
             loss_num = loss(x, x_)
-
         elif  type=="VAE":
             x_, mu, log_var, z=model(x)
             loss_num=loss(x, x_,mu,log_var,epoch,epoch_num)
@@ -117,7 +113,7 @@ def test_epoch(model, test_loader, loss, epoch, type,epoch_num):
                 z = torch.randn(128,1,10)
                 sample = model.inference(z)
                 sample = sample.reshape(-1, 1, 28, 28)[:32]
-                print(z[0],sample[0])
+                #print(z[0],sample[0])
                 # 保存一些重构出来的图像用于(写报告)进一步研究 (5/100)
                 if not os.path.exists(f"results/{type}"):
                     os.makedirs(f"results/{type}")
@@ -132,7 +128,7 @@ def test_epoch(model, test_loader, loss, epoch, type,epoch_num):
                 z = torch.randn(128,1,10)
                 sample = model.inference(z,y)
                 sample = sample.reshape(-1, 1, 28, 28)[:32]
-                print(z[0],sample[0])
+                #print(z[0],sample[0])
                 # 保存一些重构出来的图像用于(写报告)进一步研究 (5/100)
                 if not os.path.exists(f"results/{type}"):
                     os.makedirs(f"results/{type}")
@@ -173,7 +169,6 @@ def main(args):
     #       optimizer=optimizer, epoch_num=args.epoch_num,type=args.type)
     for epoch in range(args.epoch_num):
         print("\n epoch:", epoch)
-
         train_epoch(model=auto_encoder, loss=loss, train_loader=train_loader,
                     optimizer=optimizer, epoch=epoch, type=args.type,epoch_num=args.epoch_num)
         test_epoch(model=auto_encoder, test_loader=test_loader, loss=loss,
@@ -189,7 +184,10 @@ if __name__ == "__main__":
     parser.add_argument("--latent_size", default=10, type=int)  # 输出层大小，即服从高斯分布的隐含变量的维度。
     parser.add_argument("--hidden_size", default=128, type=int)
     parser.add_argument("--batch_size", default=128, type=int)
-    parser.add_argument("--epoch_num", default=8, type=int)
+    parser.add_argument("--epoch_num", default=128, type=int)
     args = parser.parse_args()
     print(args)
     main(args)
+    # parser.set_defaults(type="CVAE")
+    # args = parser.parse_args()
+    # main(args)

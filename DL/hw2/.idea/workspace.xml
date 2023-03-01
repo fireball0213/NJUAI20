@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51313fc1-0c27-4768-94ab-d9463df19af3" name="Changes" comment="" />
+    <list default="true" id="51313fc1-0c27-4768-94ab-d9463df19af3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../MCS/编程作业/hello.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../MCS/编程作业/hello.m" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -24,8 +26,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
-    "last_opened_file_path": "C:/Users/Shawn/Desktop/python_work/pytorch/DL-hw2",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "C:/Users/Shawn/Desktop/NJUAI20/DL",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -37,6 +40,8 @@
       <option name="presentableId" value="Default" />
       <updated>1669786084513</updated>
       <workItem from="1669786086530" duration="9000" />
+      <workItem from="1675436990646" duration="1200000" />
+      <workItem from="1675476347471" duration="1014000" />
     </task>
     <servers />
   </component>
@@ -53,5 +58,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/hw2$data.coverage" NAME="data Coverage Results" MODIFIED="1675477328646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

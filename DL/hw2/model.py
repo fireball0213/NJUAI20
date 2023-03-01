@@ -55,11 +55,9 @@ class Decoder(nn.Module):
                                          )
         elif decode_type == "CVAE":
             self.decoder = ...  # 实现CVAE的decoder (5/100)
-            self.decoder = nn.Sequential(nn.Linear(latent_size, 32), nn.ReLU(),
-                                         nn.Linear(32, 64), nn.ReLU(),
-                                         nn.Linear(64, hidden_size), nn.ReLU(),
-                                         nn.Linear(hidden_size, 256), nn.ReLU(),
-                                         nn.Linear(256, 400), nn.ReLU(),
+            self.decoder = nn.Sequential(nn.Linear(latent_size, 50), nn.ReLU(),
+                                         nn.Linear(50, hidden_size), nn.ReLU(),
+                                         nn.Linear(hidden_size, 400), nn.Sigmoid(),
                                          nn.Linear(400, x_dim)
                                          )
         else:
@@ -82,7 +80,7 @@ class AutoEncoder(nn.Module):
         # self.batch_size = kwargs['batch_size']
 
     def forward(self, x):
-        z = self.encoder(x)  # ,batch_size=self.batch_size
+        z = self.encoder(x)
         # 实现AE的forward过程(5/100)
         x_ = self.decoder(z)
         return z, x_
@@ -97,13 +95,10 @@ class VariationalAutoEncoder(nn.Module):
     def forward(self, xs):
         # 实现VAE的forward过程(10/100)
         mu, log_var = self.encoder(xs)
-
         std = torch.exp(0.5 * log_var)
         eps = torch.randn_like(std)
         z = eps * std + mu
-
         x_ = self.decoder(z)
-
         return x_, mu,log_var, z
     def inference(self, z):
         x_ = self.decoder(z)

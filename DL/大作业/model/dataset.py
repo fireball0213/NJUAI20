@@ -17,9 +17,6 @@ def load_h5(file_path):
     X = data["X"]
     Y = data["Y"]
     pos = data["pos"].T
-    # print(data["X"],data["X"].shape)
-    # print(data["Y"],data["Y"].shape)
-    # print(pos,pos.shape)
     y = []
     y_dic = {}
     for i in Y:
@@ -29,15 +26,10 @@ def load_h5(file_path):
             y_dic[i] += 1
         else:
             y_dic[i] = 1
-    # print(y_dic)
-    # print(Y)
     y = np.array(y)
-    # print(y)
     lable = list(y_dic.keys())
     lable.sort()
-    # print(lable)
     print("load data success!", file_path)
-    # print(np.hstack((pos,X)),np.hstack((pos,X)).shape)
     return X, y, pos, lable
 
 
