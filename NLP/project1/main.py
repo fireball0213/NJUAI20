@@ -5,28 +5,25 @@
 @time:2023-03-28
 """
 
-from dataset import get_pretrain_features,load_train,load_test,test_acc,write_f,preprocess_keywords
-from model import Multinomial,Ensemble
-
-textline = load_test("test.txt")
-train_X,train_Y=load_train("train.txt")
-# print(train_X[0])
-train_X=preprocess_keywords(train_X)
-textline=preprocess_keywords(textline)
-
-# for i in range(10):
-#     print(textline[i])
-#     print(preprocess(textline[i]))
-#     print(train_Y[i])
-#     print(preprocess(train_X[i]))
-
-pred,train_pred=Multinomial(train_X,train_Y,textline)
-#pred,train_pred=Ensemble(train_X,train_Y,textline)
+from dataset import get_pretrain_features, load_train, load_test, test_acc, write_f, preprocess_keywords
+from model import Multinomial_TF, Ensemble
 
 
+if __name__ == "__main__":
+    # 读取原始数据集
+    textline = load_test("test.txt")
+    train_X, train_Y = load_train("train.txt")
 
+    # 分词等预处理
+    train_X = preprocess_keywords(train_X)
+    textline = preprocess_keywords(textline)
 
-# 定义Embedding层
-#embedding = torch.nn.Embedding.from_pretrained(pretrained_weights)
-print(test_acc(train_Y,train_pred))
-write_f(pred)
+    # 集成学习
+    pred, train_pred = Ensemble(train_X, train_Y, textline)
+
+    # 打印训练集准确率
+    print("训练集准确率:", test_acc(train_Y, train_pred))
+
+    # 输出预测文件
+    write_f(pred)
+    print("文件2013000086.txt成功输出")
