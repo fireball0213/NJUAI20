@@ -16,45 +16,44 @@ from torchtext.vocab import Vectors
 import numpy as np
 import pandas as pd
 import torch
+
+
 def load_train(filename):
     with open(filename, encoding='utf-8') as f:
         text = f.readlines()
         # 创建简繁转换器对象
         converter = opencc.OpenCC('t2s.json')
         # 将繁体中文文本转换为简体中文文本
-        X= []
-        Y=[]
+        X = []
+        Y = []
         for i in range(len(text)):
             Y.append(text[i][0])
             X.append(converter.convert(text[i][2:]))
-    return X,Y
+    return X, Y
+
+
 def load_test(filename):
     with open(filename, encoding='utf-8') as f:
         text = f.readlines()
         # 创建简繁转换器对象
         converter = opencc.OpenCC('t2s.json')
         # 将繁体中文文本转换为简体中文文本
-        textline= []
+        textline = []
         for i in range(len(text)):
             textline.append(converter.convert(text[i]))
     return textline
 
 
-def write_f(label):
-    with open('201300086.txt', 'w', encoding='utf-8') as f:
-        for i in range(len(label)):
-            f.write(label[i] + '\n')
-
-def test_acc(Y,pred):
-    acc=0
-    max=len(Y)
+def test_acc(Y, pred):
+    acc = 0
+    max = len(Y)
     for i in range(max):
-        acc+=Y[i]==pred[i]
-    return acc/max
+        acc += Y[i] == pred[i]
+    return acc / max
 
 
 def preprocess_keywords(text):
-    words=[]
+    words = []
     for textline in text:
         # 去除特殊符号
         pattern = '[^\u4e00-\u9fa5a-zA-Z0-9]+'
@@ -69,12 +68,15 @@ def preprocess_keywords(text):
         keywords = jieba.analyse.extract_tags(textline, topK=20, withWeight=True, allowPOS=())
         # 将分词结果和关键词组合成一个列表
         word = list(seg_list) + [word[0] for word in keywords]
+        # word="".join(word)
         words.append(word)
+
     return words
 
-def preprocess_vec():#加工预训练的词向量文件,输出文件
+
+def preprocess_vec():  # 加工预训练的词向量文件,输出文件
     textline = []
-    title=[]
+    title = []
     with open("sgns.weibo.bigram-char", encoding='utf-8') as f:
         text = f.readlines()
         for i in range(len(text)):
@@ -84,12 +86,14 @@ def preprocess_vec():#加工预训练的词向量文件,输出文件
                 textline.append(line)
     with open('sgns.weibo_vocab.txt', 'w', encoding='utf-8') as f:
         for i in range(len(title)):
-                f.write(title[i] + "\n")
+            f.write(title[i] + "\n")
     with open('sgns.weibo.txt', 'w', encoding='utf-8') as f:
         for i in range(len(textline)):
             for j in range(len(textline[i])):
                 f.write(str(textline[i][j]) + " ")
             f.write('\n')
+
+
 def record_time(func):
     def wrapper(*args, **kwargs):  # 包装带参函数
         start_time = time.perf_counter()
@@ -100,8 +104,9 @@ def record_time(func):
 
     return wrapper
 
+
 @record_time
-def get_features(train_X):#
+def get_pretrain_features(train_X):  #
     """
     :return: 词向量矩阵,预训练词向量(可索引)，转成feature的原分词后文本平均
     """
@@ -111,19 +116,35 @@ def get_features(train_X):#
 
     # 加载预训练的词向量
     glove = Vectors(name='sgns.weibo.txt')
-    print("预训练词向量加载完成")
+    print("预训练词向量加载完成", end=" ")
 
-    #转feature
-    features=torch.zeros((len(train_X),300))
+    # 转feature
+    features = torch.zeros((len(train_X), 300))
+    find = 0
+    all = 0
     for i in range(len(train_X)):
         feature_mean = torch.zeros(300)
+        # s=time.time()
         for j in range(len(train_X[i])):
-            feature_mean+=glove[train_X[i][j]]
-        if len(train_X[i])>0:
-            feature_mean/=len(train_X[i])
+            all += 1
+            # if train_X[i][j] in glove:
+            #     print(0)
+            # #if sum(glove[train_X[i][j]])==0:
+            #     #feature_mean+= torch.randn(300)
+            #     pass
+            # else:
+            #     find += 1
+            #     #print(find,all)
+            #     feature_mean+=glove[train_X[i][j]]
+            feature_mean += glove[train_X[i][j]]
+        # e=time.time()
+        # print(e-s)
+        if len(train_X[i]) > 0:
+            feature_mean /= len(train_X[i])
         else:
             pass
-        features[i]=feature_mean#.reshape(1,-1)
+        features[i] = feature_mean  # .reshape(1,-1)
+    # print("feature转换完成,共找到{}/{}个".format(find,all))
     # 构建词向量矩阵
     embedding_dim = 300
     pretrained_weights = torch.zeros(len(vocab), embedding_dim)
@@ -132,7 +153,12 @@ def get_features(train_X):#
             pretrained_weights[i] = glove[word]
         except KeyError:
             pass
-    #print("词向量矩阵加载完成")
-    return pretrained_weights,glove,features
+    # print("词向量矩阵加载完成")
+    return pretrained_weights, glove, features
 
+
+def write_f(label):
+    with open('201300000.txt', 'w', encoding='utf-8') as f:
+        for i in range(len(label)):
+            f.write(label[i] + '\n')
 # if __name__ == "__main__":
