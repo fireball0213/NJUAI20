@@ -137,6 +137,7 @@ def Ensemble(train_data, train_labels, textwords):
                              final_estimator=sv, passthrough=True, verbose=1,
                              n_jobs=-1)  # , stack_method='predict_proba'
 
+    # clf=sv
     # Voting投票法集成
     """
     VotingClassifier：

@@ -16,6 +16,7 @@ from torchtext.vocab import Vectors
 import numpy as np
 import pandas as pd
 import torch
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def load_train(filename):
@@ -52,23 +53,50 @@ def test_acc(Y, pred):
     return acc / max
 
 
-def preprocess_keywords(text):
-    words = []
-    for textline in text:
-        # 去除特殊符号
-        pattern = '[^\u4e00-\u9fa5a-zA-Z0-9]+'
-        textline = re.sub(pattern, '', textline)
+def preprocess_keywords(texts):
+    """
+    sv调参：
 
-        # 使用jieba进行分词
-        seg_list = list(jieba.cut(textline, cut_all=False))
+        去停用词，key:842
+        去停用词，senti:843
+        保留停用词：0.85（啥也不加）
+        保留停用词，key：845
+        保留停用词，senti：849
+        保留停用词，key，senti：852
+        保留停用词，key，senti，senti：85
+        保留停用词，去掉原始分词，senti：828
+    """
+    # 去除特殊符号
+    pattern = '[^\u4e00-\u9fa5a-zA-Z0-9]+'
+    texts = [re.sub(pattern, '', textline) for textline in texts]
+
+    vectorizer = TfidfVectorizer()
+
+    # 对文本进行分词
+    seg_list = [list(jieba.cut(textline, cut_all=False)) for textline in texts]
+    seg_str = [' '.join(jieba.cut(textline, cut_all=False)) for textline in texts]
+    # 将文本转换为TF-IDF特征向量
+    X = vectorizer.fit_transform(seg_str)
+
+    # 获取特征词
+    feature_names = vectorizer.get_feature_names()
+
+    words = []
+    # 计算每个文本中TF-IDF值最高的词语
+    for i in range(len(texts)):
         # 去除停用词
-        stopwords = [line.strip() for line in open('stopwords.txt', 'r', encoding='utf-8').readlines()]
-        seg_list = [word for word in seg_list if word not in stopwords]
+        # stopwords = [line.strip() for line in open('stopwords.txt', 'r', encoding='utf-8').readlines()]
+        # seg_list[i] = [word for word in seg_list[i] if word not in stopwords]
+        indices = X[i].nonzero()[1]
         # 提取关键词
-        keywords = jieba.analyse.extract_tags(textline, topK=20, withWeight=True, allowPOS=())
-        # 将分词结果和关键词组合成一个列表
-        word = list(seg_list) + [word[0] for word in keywords]
-        # word="".join(word)
+        keywords = jieba.analyse.extract_tags(texts[i], topK=20, withWeight=True, allowPOS=())
+        # 提取情感关键词
+        senti_keyword = [feature_names[j] for j in indices]
+        word = []
+        word += seg_list[i]
+        word += [word[0] for word in keywords]
+        word += [word for word in senti_keyword]
+
         words.append(word)
 
     return words
@@ -145,9 +173,10 @@ def get_pretrain_features(train_X):  #
     return pretrained_weights, glove, features
 
 
-def write_f(label):
-    with open('201300086.txt', 'w', encoding='utf-8') as f:
+def write_f(label, file='201300000.txt'):
+    with open(file, 'w', encoding='utf-8') as f:
         for i in range(len(label)):
             f.write(label[i] + '\n')
+    print(file, "成功输出")
 
 # if __name__ == "__main__":

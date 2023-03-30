@@ -8,7 +8,6 @@
 from dataset import get_pretrain_features, load_train, load_test, test_acc, write_f, preprocess_keywords
 from model import Multinomial_TF, Ensemble
 
-
 if __name__ == "__main__":
     # 读取原始数据集
     textline = load_test("test.txt")
@@ -26,4 +25,3 @@ if __name__ == "__main__":
 
     # 输出预测文件
     write_f(pred)
-    print("文件2013000086.txt成功输出")
