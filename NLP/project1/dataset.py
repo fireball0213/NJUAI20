@@ -4,7 +4,6 @@
 @author:201300086
 @time:2023-03-27
 """
-import numpy as np
 import random
 from collections import Counter
 import time
@@ -173,7 +172,7 @@ def get_pretrain_features(train_X):  #
     return pretrained_weights, glove, features
 
 
-def write_f(label, file='201300000.txt'):
+def write_f(label, file='201300086.txt'):
     with open(file, 'w', encoding='utf-8') as f:
         for i in range(len(label)):
             f.write(label[i] + '\n')

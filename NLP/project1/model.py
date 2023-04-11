@@ -75,8 +75,7 @@ def Ensemble(train_data, train_labels, textwords):
         nu=0.3:0.844
         nu=0.2:0.841
     """
-    # sv = svm.SVC(random_state=42, kernel='poly', coef0=2.5,C=0.8, gamma=0.1 ) #
-    sv = svm.SVC(random_state=42, C=10, gamma=0.1)  # 0.814#{'C': 10, 'gamma': 0.1}0.842
+    sv = svm.SVC(random_state=42, C=10, gamma=0.1)  # 0.842
     svnu = svm.NuSVC(random_state=42, nu=0.2)
 
     knn = KNeighborsClassifier(n_jobs=-1)  # 0.735
@@ -112,6 +111,7 @@ def Ensemble(train_data, train_labels, textwords):
     # # # }#'alpha': lst#[0.0001,0.01,0.1, 1.0, 2.0],#'fit_prior': [True, False]'penalty':['l1','l2','elasticnet','none']
     # grid_search = GridSearchCV(clf, param_grid=param_grid, cv=5)
     # grid_search.fit(train_features, train_labels)
+
     # # 输出最优参数和交叉验证得分
     # print("Best parameters: ", grid_search.best_params_)
     # print("Best cross-validation score: {:.2f}".format(grid_search.best_score_))
@@ -129,23 +129,27 @@ def Ensemble(train_data, train_labels, textwords):
         rf, lr,bag,ada+ sv = 0.851
         rf, lr,bag+ sv = 0.851
         rf, lr,bag,gb+ sv = 0.846
-    rf和bag调参后：
+    停用词和情感词优化后：
+        lr,ada+sv=0.851
+        rf,ada+sv=0.864
+        rf,gb+sv=0.862
+        rf+sv=0.864
         lr,knn,rf,bag+sv=0.857
-        lr,rf,bag+sv=0.855
+        lr,rf,bag+sv=0.862
+        lr,rf,bag,ada+sv=0.862
+        lr,rf,ada+sv=0.862
+        
     """
-    clf = StackingClassifier(estimators=[('lr', lr), ('knn', knn), ('rf', rf), ('bag', bag)],
+    clf = StackingClassifier(estimators=[('rf', rf)],
                              final_estimator=sv, passthrough=True, verbose=1,
                              n_jobs=-1)  # , stack_method='predict_proba'
 
-    # clf=sv
     # Voting投票法集成
     """
     VotingClassifier：
         rf, lr,gb,knn + sv = 0.82左右
     """
     # clf = VotingClassifier(estimators=[('rf', rf), ('lr', lr), ('gb', gb), ('knn', knn)], voting='soft')
-    # clf = VotingClassifier(estimators=[ ('knn', knn), ('lr', lr)], voting='soft')
-    # clf = VotingClassifier(estimators=[('nb', nb), ('lr', lr)], voting='hard')
 
     clf.fit(train_features, train_labels)
 
