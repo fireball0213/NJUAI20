@@ -5,9 +5,9 @@ My undergraduate courses in NJUAI
 ## Course Projects  
 >In time-descending order
 * Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/` 
-* Evolutionary Algorithms in Max Cut : `HSEA/`
-* Heuristic Algorithms in Pacman Game : `HSEA/`
-* Matlab Programming for Multi Control System : `MCS/Matlab Programming`
+* Evolutionary Algorithms in Max Cut : `HSEA/`  <span style="background-color: #FFEBCD; padding: 5px; font-size: 1.5em; color: #333;">[YYYY-MM]</span>
+* Heuristic Algorithms in Pacman Game : `HSEA/`  <span style="background-color: #FFEBCD; padding: 10px; font-size: 2em; color: #333;">[2023-05]</span>
+* Matlab Programming for Multi Control System : `MCS/Matlab Programming`  <span style="font-size: 2em; color: #333;">[2023-05]</span>
 * DecisionTree(manually) : `ML/DecisionTree.py` <span style="font-size: 1.5em; color: #555;">[YYYY-MM]</span>
 ##### 📅 Updated: May 2023
   
