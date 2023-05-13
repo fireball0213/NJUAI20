@@ -4,6 +4,7 @@ My undergraduate courses in NJUAI
 
 ### Course Projects  
 >In time-descending order.
+* Matlab Programming for Multi Control System
 * DecisionTree(manually): `ML/DecisionTree.py`
   
   喜欢就留个star~吧  
