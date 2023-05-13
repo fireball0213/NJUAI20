@@ -4,8 +4,10 @@ My undergraduate courses in NJUAI
 
 ## Course Projects  
 >In time-descending order
+* Clustering of Spatial Transcriptomics Single-Cell Sequencing Data : `DL/`  [2023-01]
 * Googol2002/Pedestrian-Dead-Reckoning(Collaborative Project) : `not in this repository`  [2022-12]
 * Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/`  [2022-12]
+* AutoEncoder : `DL/`  [2022-11]
 * Evolutionary Algorithms in Max Cut : `HSEA/`  [2022-11]
 * Heuristic Algorithms in Pacman Game : `HSEA/`  [2022-10]
 * Matlab Programming for Multi Control System : `MCS/Matlab Programming`  [2022-10]
