@@ -4,13 +4,14 @@ My undergraduate courses in NJUAI
 
 ## Course Projects  
 >In time-descending order
-* Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/` 
-* Evolutionary Algorithms in Max Cut : `HSEA/`  <span style="background-color: #FFEBCD; padding: 5px; font-size: 1.5em; color: #333;">[YYYY-MM]</span>
-* Heuristic Algorithms in Pacman Game : `HSEA/`  <span style="background-color: #FFEBCD; padding: 10px; font-size: 2em; color: #333;">[2023-05]</span>
-* Matlab Programming for Multi Control System : `MCS/Matlab Programming`  <span style="font-size: 2em; color: #333;">[2023-05]</span>
-* DecisionTree(manually) : `ML/DecisionTree.py` <span style="font-size: 1.5em; color: #555;">[YYYY-MM]</span>
+* Googol2002/Pedestrian-Dead-Reckoning(Collaborative Project) : `not in this repository`  [2022-12]
+* Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/`  [2022-12]
+* Evolutionary Algorithms in Max Cut : `HSEA/`  [2022-11]
+* Heuristic Algorithms in Pacman Game : `HSEA/`  [2022-10]
+* Matlab Programming for Multi Control System : `MCS/Matlab Programming`  [2022-10]
+* DecisionTree(manually) : `ML/DecisionTree.py`  [2022-04]
+
+  
+ 
 ##### 📅 Updated: May 2023
-  
-  喜欢就留个star~吧  
-  
 [![Page Views Count](https://badges.toozhao.com/badges/01GYHDTSQX9KXBYG96T2V35KPH/green.svg)](https://badges.toozhao.com/stats/01GYHDTSQX9KXBYG96T2V35KPH "Get your own page views count badge on badges.toozhao.com")
