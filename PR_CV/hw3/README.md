@@ -57,17 +57,17 @@ plt.hist(decoded_data,bins=50, label='Decoded Data', alpha=0.5,rwidth=2)
 
 数据重构后对比：（和原始混合高斯分布很相近，说明编码解码效果不错）
 
-<img src="C:/Users/Shawn/Desktop/NJUAI20/PR_CV/第三次作业/模式识别第三次作业.assets/image-20230511005352497.png" alt="image-20230511005352497" style="zoom:67%;" />
+<img src="./README.assets/image-20230511005352497.png" alt="image-20230511005352497" style="zoom:67%;" />
 
 编码分布图：（取整后）
 
-<img src="C:/Users/Shawn/Desktop/NJUAI20/PR_CV/第三次作业/模式识别第三次作业.assets/image-20230511010341505.png" alt="image-20230511010341505" style="zoom:50%;" />
+<img src="./README.assets/image-20230511010341505.png" alt="image-20230511010341505" style="zoom:50%;" />
 
 测试集MSE：0.042
 
 原数据、还原后数据、整数编码仅展示前五个数据点：
 
-<img src="C:/Users/Shawn/Desktop/NJUAI20/PR_CV/第三次作业/模式识别第三次作业.assets/image-20230511010120188.png" alt="image-20230511010120188" style="zoom:33%;" />
+<img src="./README.assets/image-20230511010120188.png" alt="image-20230511010120188" style="zoom:33%;" />
 
 
 
