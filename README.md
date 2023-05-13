@@ -3,12 +3,12 @@ My undergraduate courses in NJUAI
 课程笔记、复习提纲、考试考点。课程作业、实验报告。  
 
 ## Course Projects  
->In time-descending order.
-* Multi-objective Evolutionary Algorithms in Subset Selection 
-* Evolutionary Algorithms in Max Cut
-* Heuristic Algorithms in Pacman Game
-* Matlab Programming for Multi Control System
-* DecisionTree(manually): `ML/DecisionTree.py`
+>In time-descending order
+* Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/` 
+* Evolutionary Algorithms in Max Cut : `HSEA/`
+* Heuristic Algorithms in Pacman Game : `HSEA/`
+* Matlab Programming for Multi Control System : `MCS/Matlab Programming`
+* DecisionTree(manually) : `ML/DecisionTree.py`
   
   喜欢就留个star~吧  
   
