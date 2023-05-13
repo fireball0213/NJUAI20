@@ -2,9 +2,6 @@
 
 ###### 201300086 史浩男 人工智能学院 201300086@smail.nju.edu.cn
 
-### 项目结构
-
-<img src="C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230330180222845.png" alt="image-20230330180222845" style="zoom:50%;" />
 
 #### 安装依赖项
 
@@ -30,8 +27,8 @@ torchtext~=0.15.1
 
 运行时间约50s，在leaderboard评分如下：0.864
 
-![image-20230330190042884](C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230330190042884.png)
 
+<img src="./README.assets/image-20230330190042884.png" alt="image-20230330190042884" style="zoom:30%;" />
 
 
 
@@ -49,8 +46,6 @@ torchtext~=0.15.1
 
 
 ## 二、代码模块功能描述
-
-<img src="./README.assets/image-20230330180222845.png" alt="image-20230330180222845" style="zoom:50%;" />
 
 - `dataset.py`：数据预处理，词向量，文件读写
 
@@ -108,7 +103,7 @@ torchtext~=0.15.1
 
 #### 2、文本加工
 
-<img src="./README.assets/image-20230411012303731.png" alt="image-20230411012303731" style="zoom:33%;" />
+<img src="./README.assets/image-20230411012303731.png" alt="image-20230411012303731" style="zoom:20%;" />
 
 图中显示了在只使用SVM作为训练模型时，尝试**是否使用停用词、是否添加关键词、是否添加情感关键词**的不同种组合得到的性能
 
@@ -172,13 +167,13 @@ torchtext~=0.15.1
 
 - 最初的尝试：
 
-<img src="./README.assets/image-20230411014157293.png" alt="image-20230411014157293" style="zoom: 50%;" />
+<img src="./README.assets/image-20230411014157293.png" alt="image-20230411014157293" style="zoom: 20%;" />
 
 ​			在使用随机森林rf，线性回归lr和bagging作为初级学习器，SVM作为元学习器时，**性能从0.842提升到0.851**
 
 - 在使用4.2中的文本加工调试后（停用词和情感词优化后）：
 
-  <img src="./README.assets/image-20230411014451708.png" alt="image-20230411014451708" style="zoom:50%;" />
+  <img src="./README.assets/image-20230411014451708.png" alt="image-20230411014451708" style="zoom:20%;" />
 
 ​			在使用随机森林rf作为初级学习器，SVM作为元学习器时，**性能达到了本作业的巅峰成绩0.864**
 
