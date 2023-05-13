@@ -4,7 +4,7 @@ My undergraduate courses in NJUAI
 
 ### Course Projects  
 >In time-descending order.
-* DecisionTree(manually):ML/DecisionTree.py
+* DecisionTree(manually): `ML/DecisionTree.py`
   
   喜欢就留个star~吧  
   
