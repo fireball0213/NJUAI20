@@ -14,7 +14,7 @@
 
 请进入model文件中的k_means.py中的主函数部分
 
-<img src="C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230205222421963.png" alt="image-20230205222421963" style="zoom:50%;" />
+<img src=".\README.assets\image-20230205222421963.png" alt="image-20230205222421963" style="zoom:50%;" />
 
 指定读取的数据集、读取已训练好的模型
 
