@@ -4,6 +4,8 @@ My undergraduate courses in NJUAI
 
 ## Course Projects  
 >In time-descending order
+* AutoEncoder in Real Data Compression : `PR_CV/hw3/Problem6.py`  [2023-05]
+* Chinese Sentiment Classification : `NLP/`  [2023-03]
 * Clustering of Spatial Transcriptomics Single-Cell Sequencing Data : `DL/`  [2023-01]
 * Googol2002/Pedestrian-Dead-Reckoning(Collaborative Project) : `not in this repository`  [2022-12]
 * Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/`  [2022-12]
