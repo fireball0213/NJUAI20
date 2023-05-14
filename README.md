@@ -7,7 +7,7 @@ My undergraduate courses in NJUAI
 * AutoEncoder in Real Data Compression : `PR_CV/hw3/Problem6.py` [![github](https://img.shields.io/badge/time-2023--05-9cf)](https://github.com/time-2023--05-9cf)
 * Chinese Sentiment Classification : `NLP/`  [![github](https://img.shields.io/badge/time-2023--03-9cf)](https://github.com/time-2023--03-9cf)
 * Clustering of Spatial Transcriptomics Single-Cell Sequencing Data : `DL/`  [![github](https://img.shields.io/badge/time-2023--01-9cf)](https://github.com/time-2023--01-9cf)
-* Googol2002/Pedestrian-Dead-Reckoning(Collaborative Project) : `not in this repository`  [![github](https://img.shields.io/badge/time-2022--12-9cf)](https://github.com/time-2022--12-9cf)
+* Googol2002/Pedestrian-Dead-Reckoning(Collaborative Project) : [source](https://github.com/Googol2002/Pedestrian-Dead-Reckoning)  [![github](https://img.shields.io/badge/time-2022--12-9cf)](https://github.com/time-2022--12-9cf)
 * Multi-objective Evolutionary Algorithms in Subset Selection : `HSEA/` [![github](https://img.shields.io/badge/time-2022--12-9cf)](https://github.com/time-2022--12-9cf)
 * AutoEncoder : `DL/` [![github](https://img.shields.io/badge/time-2022--11-9cf)](https://github.com/time-2022--11-9cf)
 * Evolutionary Algorithms in Max Cut : `HSEA/`  [![github](https://img.shields.io/badge/time-2022--11-9cf)](https://github.com/time-2022--11-9cf)
