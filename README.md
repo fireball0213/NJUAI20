@@ -1,6 +1,5 @@
 # NJUAI20
-My undergraduate courses in NJUAI  
-课程笔记、复习提纲、考试考点。 &nbsp; 课程作业、实验报告。  
+My course projects and notes of undergraduate courses in NJUAI  
 
 ## Course Projects  
 >In time-descending order
