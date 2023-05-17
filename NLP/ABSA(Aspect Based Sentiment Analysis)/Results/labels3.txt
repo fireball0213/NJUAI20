@@ -1,0 +1,1120 @@
+falafel:666
+food:1054
+calamari:872
+chicken and falafel platters:1067
+live entertainment:19
+service:602
+salad dressing:513
+SERVICE:891
+host:376
+selection of food:146
+meal:93
+waiter:163
+scenery:620
+red onion:941
+staff:629
+rice milk:1105
+teas:122
+teriyaki:71
+sales people:603
+homemade pastas:479
+latin food:57
+lychee martini:12
+drink:1061
+Hostess:445
+garlic soup:426
+portion of foie gras:805
+outdoors:1028
+design:130
+Greek yogurt -LRB- with cuccumber , dill , and garlic -RRB-:1119
+sushi:23
+food:315
+dinner:1003
+food:288
+plaintains:808
+wine:867
+flan:1001
+food:359
+bartenders:265
+service:572
+pizza:489
+salmon dishes:448
+steaks:54
+vegetable risotto:481
+pork product:298
+soy mayonaise:753
+drinks:257
+big mac:622
+Indian food:523
+menu:15
+food:771
+variety:932
+food:1084
+calamari:1052
+falafal:183
+hostess:358
+meal:745
+AC:601
+pizza:350
+lobster risotto:65
+beer:83
+room:1042
+traditional Italian items:500
+dinners:53
+chicken:184
+food:168
+Desserts:33
+food:877
+non-meat alternatives:792
+prices:465
+service:454
+dessert:1048
+tapas:777
+hostess:754
+entree:800
+food:335
+vintages:617
+chicken:768
+meaty chili:948
+Saketini:676
+Portuguese cheese cart:385
+Menus:830
+fried foods:1032
+atmosphere:304
+scene:820
+atmosphere:82
+green chillis:305
+service:721
+soup:488
+McDonald s famous french fries:815
+service:881
+steak:925
+food:35
+Jerusalem market-style falafel wraps:592
+vegan options:169
+crab cakes:220
+rolls with crab:375
+Korean dishes:912
+black cod with miso base:992
+eggplant salad:1118
+service:584
+ITALIAN MEAL:587
+room:1058
+food:469
+bottle of wine:986
+interior:711
+clientele:968
+servers:378
+menu:537
+prices:486
+dish:306
+mojitos:124
+lamb kebabs:673
+disco pop duo:336
+English muffins:296
+Hibiscus lemonade:1020
+sauce cart:927
+waitstaff:1065
+food:273
+food:406
+Cosi sandwiches:403
+soup:1023
+atmosphere:357
+spinach thing:672
+soft shell crab:237
+Food:702
+served:545
+sushi:196
+fortune cookies:638
+meats:119
+waitress:799
+food:853
+sashimi:291
+price:292
+MAC AND CHEESE:463
+menu:251
+fajita:134
+portabella lasagna:1091
+sauce:1038
+pizza:229
+outside:960
+food:544
+place:634
+waiter:595
+bread:0
+shrimp dishs:769
+service:284
+crust:412
+Sangria:438
+location:604
+food:156
+staff:108
+bartender:1106
+chili signed food items:205
+food:976
+Entrees:66
+service:272
+humus:429
+food:96
+food:207
+Coffee:402
+Waiters:216
+dish:535
+sweet corn-foie gras brulee:831
+priced:435
+quaility:688
+atmosphere:961
+Churrasco:498
+priced:145
+twist on pizza:600
+sweets:1050
+pizza s:431
+dining experience:362
+mango margareta:160
+chinese food:233
+chicken dinner:204
+roast chicken:319
+homemade Guacamole:491
+staff:132
+thin crust:935
+mushroom barley soup:106
+music:553
+Japanese dishes:988
+cocktail menu:219
+wait staff:848
+sauce:624
+selection:139
+waiter:685
+wine list:218
+Rabbit stew:526
+owners:40
+staff:61
+meal:1102
+place:851
+sushi:250
+wait staff:446
+chickpeas:824
+priced:578
+soup:667
+ambience:121
+sweets:123
+entrees:772
+service:796
+Sashimi portion:566
+ribs:209
+food:786
+waiters:364
+Japanese food:562
+people:5
+dining:713
+food:878
+servers:355
+seafood:115
+place:408
+music:761
+Tostada de Tinga:264
+casual drink:1027
+menu:950
+food:1112
+catfish:977
+place:915
+service:125
+food:1096
+Greek food:1086
+food:231
+glass of wine:698
+meal:970
+Taylor ham:297
+dishes:1033
+argentine chorizo appetizer:747
+pizza s:515
+wine:509
+service:782
+Staff:432
+size:1018
+food:442
+soups:457
+Lamb Chops:172
+food:582
+appetizer:1051
+bill:389
+interior:365
+service:1066
+food:91
+pasta:623
+menu:1064
+empenadas:807
+kimono shrimp special:85
+mostarda on the cheese plate:547
+food:744
+price:798
+decor:368
+bill:730
+sandwiches:459
+waitstaff:394
+service:351
+waitress:646
+non-sushi selection:1013
+waiter:536
+takeout:1009
+green beans:937
+sauce:325
+steak:589
+food:607
+selection:374
+menu:418
+parking:31
+fried calamari:876
+wraps:157
+bar:521
+food:424
+fresh juices:533
+Service:214
+pizza with soy cheese:74
+appetizers:228
+food:508
+sushi:253
+Owner:1111
+food:866
+place:1043
+staff:215
+tapas:883
+sushi:494
+staff:854
+prices:783
+Waiting:773
+spicy cod roe spaghetti:991
+utensils:933
+priced:618
+look:678
+flavors:699
+eggs benedict:179
+lunch:1083
+warm pitas:1116
+service:879
+fresh veggies:999
+Food:150
+dessert menu:1006
+appetizer:811
+place:1007
+coffee:1072
+entrees:49
+menu:987
+texture:596
+soft shell crab sandwich with fries:277
+hot and sour soup:268
+cheese baclava:674
+Carinthia cheese ravioli with wild mushrooms:832
+Desserts:189
+dinner:1055
+cocktail hour:1011
+food:627
+waiters:182
+fettucino alfredo:167
+lunch:837
+Cuisine:729
+salads:159
+waiters:143
+meal:327
+Cherry Marscapone:956
+bartender:658
+food:1004
+fish:858
+Chef:522
+price:779
+food:113
+service:307
+service:224
+service:701
+food:194
+Veal Chops:173
+prices:691
+prices:884
+bartender:377
+clientele:764
+value:751
+food:75
+food:637
+cheese plate:238
+orange chicken/beef:652
+blueberry pancakes:387
+lounge:1057
+lamb:276
+delivary:476
+boutique selection of wines:660
+atmosphere:565
+crust:372
+bar:550
+Service:628
+slices:936
+service:466
+dinner:756
+food:70
+pialla:1077
+lunch:382
+appetizers:995
+Saag gosht:242
+Dishes:737
+tabouleh:428
+service:916
+Focacchia bread:1074
+paratha:909
+Egg McMuffin sandwich:718
+drinks:16
+cajun shrimp:983
+waiter:234
+waiter:1113
+service:899
+french dish:1024
+sangria:21
+Appetizer:92
+margarita:706
+owners:712
+owner:340
+lighting:334
+filet mignon:1012
+deserts:496
+mango chicken:958
+food:894
+Indian food:170
+food:606
+desserts:32
+caeser salad:875
+dance floor:1030
+food:1097
+sushi:929
+wine:280
+drinks:227
+dessert:148
+green spinach-vodka sauce:834
+tacos:705
+food:379
+menu:22
+dish:591
+Nicoise salad:14
+black vinegar:332
+ambiance:43
+burgers:158
+menu:654
+menu:10
+table:681
+served:1016
+sushi:543
+take-out:311
+food:186
+service:223
+sandwiches:487
+apetizers:437
+chef:176
+staff:249
+managers:266
+black roasted codfish:534
+hot white mocha:504
+service:1053
+smoothies:1075
+Meal:72
+creme brulee:201
+wine:889
+waitresses:285
+blue bar area:821
+tables:828
+food:467
+homemade breads:910
+staff:464
+duck:930
+bar:649
+breakfast food:456
+food:50
+meal:942
+crepes:199
+food:111
+Indian food:244
+staff:55
+dish:1078
+staff person:841
+chicken:421
+waitstaff:81
+Sushi:923
+lunch:310
+service:422
+cold sesame noodles:767
+drink:564
+pre-show meal:1031
+bar service:329
+recipes:740
+dining experience:594
+halibut cheek appetizer:804
+decor:847
+food:279
+Pizzas:869
+escargot:900
+bartender:300
+drinks:110
+place:558
+dinner:570
+curried casseroles:112
+rolls:289
+Rabbit:174
+food:252
+staff:281
+beers:475
+flan:190
+host -LRB- owner -RRB-:354
+value:716
+pastas:845
+taste:149
+dumplings:766
+lunch:52
+beer list:232
+burrito:704
+round corner table next to the large window:598
+price:703
+service:366
+desserts:896
+vegetables:826
+food:260
+Tacos Pastor:263
+staff memebers:30
+food:77
+waitress:530
+rice:669
+food:89
+food:517
+Management:120
+food:101
+burgers:918
+hotdogs:240
+Tequila:473
+food:395
+reservations:709
+menu:693
+salads:527
+hot cakes:719
+macadamia-crusted mahi mahi:741
+prices:1081
+place:632
+pasta:873
+bill:802
+drinks:270
+caviar-topped sturgeon:833
+fries:947
+service:1036
+food:477
+long bar:1060
+cuisine:116
+food:722
+chicken tacos:1019
+choices of sauces:926
+honey BBQ rib tips:212
+Odessa stew:525
+atmosphere:689
+waiter:1101
+place:4
+wine list:776
+beans:420
+portions:625
+kompot:528
+bathroom:580
+bartender:724
+atmosphere:118
+food:104
+happy hour:682
+french fries:920
+grill:497
+service:714
+lobster ravioli:396
+new menu:1082
+MEAL:890
+martinis:679
+appetizer selection:1062
+wine:1005
+Amazin  Greens salads:943
+rice dishes:726
+owner:478
+wait staff:576
+Mediterranean salads -- layered with beets , goat cheese and walnuts:593
+pasta specials:810
+dessert pizza:17
+dining experience:897
+prices:140
+Service:398
+portions:97
+staff:520
+mojito:641
+WAITERS:586
+dinner menu:788
+Sliced steak entree:874
+flavor:886
+atmosphere:271
+sandwiches:383
+coffee:615
+organic grilled burgers:590
+specials:843
+brisket:980
+drink:404
+Service:443
+mussels:180
+wait staff:193
+service:1107
+rose roll:9
+steak:142
+chicken:352
+setting:501
+food:26
+wings:982
+courses:1015
+Onion Rings:95
+veggie burger:823
+service:328
+space:1045
+taste:114
+fried pancake served with pungent curry dipping sauce:959
+food:47
+hot dog:151
+bi-level space:1059
+fried pork dumplings:651
+taste:133
+Prices:1044
+manager:103
+fooood:675
+LASAGNA:37
+gratuity:803
+food:619
+bistro menu:736
+price:399
+value:423
+brunch:542
+service:510
+atmosphere:286
+host:868
+egg:938
+food:107
+Fresh veggies:663
+delivers:581
+drinks:725
+place:1021
+counter:985
+nicoise olives:940
+ribs:981
+cookie:639
+service:178
+apple tart:202
+meal:346
+portion size:63
+Tables:818
+service:392
+coffee:3
+menu:901
+food:898
+breakfast sandwiches:294
+noodle dishes:727
+menu:1087
+sweet honey-mustard beef short ribs:742
+orange donut:117
+ground chickpea soup:962
+waiter:914
+atmosphere:79
+food:715
+steaks:1089
+service:239
+prices:99
+duck:109
+Mediterranean delights:430
+toppings:390
+chocolate Frosty:951
+flavor:482
+food:44
+mozzarella sticks:1063
+Buffalo Chicken Kickers:944
+sauce:371
+waitress s:29
+port:384
+shredded ginger:333
+food:571
+waiter:887
+service:348
+staff:758
+staff:441
+salads:344
+wheat crusted pizza:568
+food:80
+decoration:974
+FOOD:865
+pizza:588
+atmosphere:86
+chairs:262
+waiting:302
+cheese:665
+atmosphere:856
+food:367
+price:861
+`` Roy s Classics :738
+desserts:225
+food:308
+service:275
+braised lamb shank with mashed potatoes:645
+lemon-dressed cobb:129
+kitchen food:282
+bar:1008
+place:612
+service:557
+vibe:551
+entrees:931
+middle eastern spreads:664
+entrees:789
+Cinna Stix:945
+seafood:1085
+dishes:733
+atmosphere:147
+spices:827
+array of sushi:38
+fresh juices:1076
+Yellowfin Tuna:921
+hint of cocoa:597
+atmosphere:684
+desserts:971
+cake:573
+back patio:642
+carrots:825
+pasta:217
+downstairs bar scene:468
+steaks:791
+wait:656
+food:710
+italian food:287
+food:888
+sandwiches:752
+king crab salad with passion fruit vinaigrette:734
+food:455
+meals:309
+waiter:952
+Chinese food:213
+Chicken Teriyaki:560
+bar menu:677
+food:917
+hong kong-style food:278
+Indian food:363
+menu:862
+food:388
+value:695
+dishes:850
+drinks:1039
+food:549
+fettuccine with grilled seafood in a rosemary-orange sauce:735
+service:331
+food:411
+Filet-O-Fish sandwich:814
+SERVICE:416
+manager:538
+entrees:996
+employees:955
+dining atmosphere:258
+foie gras:449
+chicken milanese:882
+meal:644
+service:98
+service:965
+portions:880
+sushi:373
+meatball parm:56
+desserts:200
+manager:299
+service:635
+price:470
+staff:574
+food:556
+appetizers:48
+Calf s liver:922
+soy sauce:647
+chicken parmigiana:69
+outdoor eating area:1046
+food:144
+escargot:337
+pizza:817
+selection:370
+prices:405
+food:153
+taramasalata:1117
+fresh salsa:1079
+place:700
+reservation:541
+bill:924
+Branzini:857
+waiters:154
+Big Mac:812
+food:696
+sushi/sashimi:290
+prices:1098
+food:413
+ingredients:569
+taste:539
+Foie Gras Unagi Napolean:989
+pasta primavera:998
+lunch:648
+service:339
+fork:842
+Japanese food:6
+indian food:42
+prices:161
+staff:636
+jazz singer:453
+decor:51
+waitress:507
+portobello/gorgonzola/sausage appetizer:64
+portions of the food:28
+atmosphere:155
+selection of wines -LRB- primarily Spanish -RRB-:763
+pie:934
+asian salad:7
+tapas:762
+dishes:548
+french fries -- with the kalmata dip:655
+food:342
+prices:316
+drink:1108
+rack of lamb in black truffle sauce:993
+Dessert:330
+space:690
+sushi:434
+food:347
+Service:855
+waiters:341
+Chicken McNuggets:813
+iced blended mocha:503
+service:360
+menu:87
+gnocchi:480
+food:781
+food:353
+food:997
+hamburger:181
+scallops:235
+Vietnamese Beef Noodle Soup:361
+root vegetables:670
+naan:908
+breakfast:720
+waiter:20
+smoothies:532
+Creamy appetizers:1115
+served:1073
+food:131
+Atmosphere:846
+ambiance:903
+sopaipillas:191
+service:197
+new hamburger with special sauce:621
+dessert:707
+chocolate and peanut butter tart:1049
+place:774
+entree-sized salads:816
+ambiance:1010
+billed:732
+Jap style hamburger steak:990
+service:78
+food:757
+menu:793
+atmosphere:226
+coconut rice:208
+poori:907
+food:187
+food:256
+portions:192
+soul food:318
+food:797
+casual lunches:472
+mac cheese:451
+served:746
+prices:583
+food:393
+service:683
+ingredients:90
+brunch:1103
+served:502
+tuna:322
+quesedilla:514
+soup and sandwich meal:269
+sushi:964
+salad:512
+people:1040
+dining:1041
+brunch menu:452
+fresh juice concoctions:314
+rooftop bar:973
+quality of food:966
+food:559
+prix fixe menu:913
+service:829
+starter:963
+menu:953
+seats:694
+food:784
+traditional Mediterranean fare:662
+dinner:749
+food:613
+atmosphere:984
+ambiance:863
+wait:717
+delivery times:1
+potato gratin:175
+lunch:819
+service:893
+drinks:659
+food:849
+repast:585
+mole sauce:135
+Malted Milk Ball Gelato:326
+Seafood Paella for two:436
+stuffed baked potatoes:949
+price:25
+asparagus:236
+grand marnier shrimp:185
+burgers:127
+wine:895
+menu:369
+grilled cheeses:919
+Smoked Trout:171
+food:222
+food:994
+dinner:415
+seafood:790
+salads:579
+candlelight:552
+spicy tuna roll:8
+place:1017
+atmoshere:610
+food:770
+service:195
+lamb entree:1034
+music:1056
+delivery:750
+service:643
+food:62
+Indian food:905
+falafel:427
+pizza:245
+BANANA PUDDING:461
+chicken:540
+portions:511
+bar:152
+service:303
+space:708
+food:608
+manager:657
+atmosphere:137
+prices:1094
+vegetarian platters:345
+main courses:871
+dabs of real mozzarella:1037
+asian fusion:731
+quality of the meat:531
+service:188
+place:338
+garlic knots:243
+lasagna:67
+owner:631
+cuisine:39
+duck confitte:775
+hot dogs:892
+staff:59
+homemade sorbets:490
+crust:391
+staff:241
+service:162
+staff:164
+wine list:577
+burgers:835
+sushi:1000
+menu:450
+waiting:687
+kitchen:686
+booth by the windows:611
+portions:24
+menu:1099
+wine:36
+food:138
+folding chair:165
+service:247
+staff:969
+Italian cuisine:609
+dinner specials:255
+cold sesame noodles:743
+food:13
+curry:906
+sushi:911
+fresh leaf salad:1068
+upstrairs dining area:822
+chicken with avocado:321
+price:483
+garden:46
+food:794
+place:1022
+display and quality of the food:605
+salads -LRB- avocado shrimp -RRB-:1035
+spicy mussels:94
+Peanut Butter Sorbet:73
+Delmonico steak:417
+place:1026
+cooked food:254
+deserts:493
+atmosphere:778
+attitude:697
+hot dogs:293
+music:723
+prices:840
+dine-in:312
+brunch:410
+beer selection:474
+service:484
+soup:198
+Food portion:261
+Food:2
+ambience:975
+service:864
+quality:839
+burgers:1088
+service:524
+cake:954
+BBQ rib:221
+food:519
+pizza:349
+price:76
+Chef:433
+food:780
+flavor:1080
+ambience:409
+gnocchi:60
+assortment of wraps:661
+potato spinach gnocchi:380
+meal:447
+salad:320
+waiter:102
+salmon:844
+desserts:852
+drinks:1109
+cost:518
+delivery service:838
+waiting:407
+dinner:485
+server:440
+place:317
+owner:248
+food:759
+meal:397
+afternoon snack:809
+treats:692
+food:1093
+slices:575
+fried rice:653
+Sushi:283
+staff:41
+meal:633
+anchovy dressing:939
+service:1095
+rice medley:671
+value:425
+Ribs:499
+owner:1110
+chocolate raspberry cake:885
+menu:739
+tator tots:295
+cake:414
+food:765
+prices:801
+wine:760
+meals:323
+waiters:1070
+food:554
+salads:128
+shepherds pie:1090
+service:614
+lamb:381
+-LSB- female -RSB- servers:1047
+appetizers:795
+side orders:946
+wine list:616
+wait:400
+Food:806
+food:401
+CRABCAKES:462
+food:313
+service:439
+tables:972
+artifical lobster meat:567
+avocado salad:211
+entree:492
+drinks:301
+taglierini with truffles:58
+decor:267
+service:787
+meal:785
+parmesan cheese:506
+dining experience:555
+chairs:680
+burger:386
+table:755
+late lunch:505
+drinks:11
+service:45
+food:84
+Deco:902
+fish:668
+rice:419
+service:860
+drinks:471
+fettuccine Alfredo:68
+fennel flavored Italian sausage:748
+decor:206
+place:1029
+Service:166
+chicken:324
+service:230
+priced:88
+bartenders:967
+salads:458
+glass of wine:1025
+food:356
+prices:626
+food:1114
+Garlic Shrimp:561
+roasted chickens:136
+Sandwiches:126
+erbazzone emiliana:546
+music:246
+bartender:650
+menu:1100
+french food:904
+Tart of the Day:34
+flavor:599
+desserts:1071
+ice drink:728
+sushi lunch:640
+staff members:563
+service:27
+milkshakes:105
+pub fare:1092
+FOOD:460
+priced:495
+lunch:529
+atmosphere:1069
+table:928
+vegan cranberry pancakes:1104
+chick peas with shrimp -LRB- appetizer -RRB-:274
+Host:444
+pizza:1002
+drinks:141
+food:859
+patties:836
+appetizers:870
+appetizers:1014
+food:177
+food:979
+service:516
+service:100
+owners:630
+roti canai appetizer:957
+beef:210
+shrimp creole:203
+service:978
+food:18
+waiter:343
+price:259

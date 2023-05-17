@@ -1,0 +1,4 @@
+raw_text,aspectTerms
+"The cab ride was awesome, but the driver was rude","[{'term':'cab ride', 'polarity':'positive'}, {'term':'driver', 'polarity':'negative'}]"
+"The cab ride was awesome, but the driver was rude","[{'term':'cab ride', 'polarity':'positive'}, {'term':'driver', 'polarity':'negative'}]"
+"The cab ride was awesome, but the driver was rude","[{'term':'cab ride', 'polarity':'positive'}, {'term':'driver', 'polarity':'negative'}]"
