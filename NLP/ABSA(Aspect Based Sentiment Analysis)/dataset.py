@@ -6,7 +6,6 @@
 import pandas as pd
 import time
 
-
 def load_train(filename):
     with open(filename, encoding='utf-8') as f:
         text = f.readlines()
@@ -55,7 +54,7 @@ def process_standard_train(sentence, word, label, out_path):  # [{'term':'cab ri
     return sentence, new_words, label
 
 
-def process_standard(sentence, word, out_path):  # [{'term':'cab ride', 'polarity':'positive'}]
+def process_standard_test(sentence, word, out_path):  # [{'term':'cab ride', 'polarity':'positive'}]
     new_sentence = []
     new_words = []
     for i in range(len(word)):
@@ -106,17 +105,6 @@ def label_transform_vers(labels):  # 反向转换
     return labels
 
 
-# def label_transform(labels):#'positive':1,'negative':-1,'none'or'neutral':0
-#     for i in range(len(labels)):
-#         if labels[i]=='positive':
-#             labels[i]='1'
-#         elif labels[i]=='negative':
-#             labels[i]='-1'
-#         else:
-#             labels[i]='0'
-#     return labels
-
-
 def record_time(func):
     def wrapper(*args, **kwargs):  # 包装带参函数
         start_time = time.perf_counter()
@@ -136,6 +124,7 @@ def write_f(label, file='201300086.txt'):
     print(file, "成功输出")
 
 
+#恢复结果的顺序(bug版本)
 def decode_result_1(labels, pred_labels):  # 反了，后面也是反的，懒得改
     num_lst = []
     word_lst = []
@@ -163,7 +152,7 @@ def decode_result_1(labels, pred_labels):  # 反了，后面也是反的，懒�
         values.append(dic[i][1])
     return values
 
-
+#恢复结果的顺序(真实版本)
 def decode_result_2(pred_labels, labels, a, b):
     num_lst = []
     word_lst = []
@@ -199,23 +188,6 @@ def decode_result_2(pred_labels, labels, a, b):
     return values
 
 
-if __name__ == "__main__":
-    # sentence, word = load_test('Dataset/test.txt')
-    # sentence, word = process_standard(sentence, word, 'Dataset/test_standard.csv')
 
-    sentence_tr, word_tr, label_tr = load_train('Dataset/train.txt')
-    sentence_tr, word_tr, label_tr = process_standard_train(sentence_tr, word_tr, label_tr,
-                                                            'Dataset/train_standard.csv')
-    # print(result_lst2)
-    #
-    # results1=[]
-    # for i in range(len(result_lst2)):
-    #     results1.append(label_transform(result_lst2[i]))
-    # print(results1)
-    # write_f(results1, 'Results/201300086.txt')
-    model_num = str(2)
-    pre_file = 'Results/pred_labels' + model_num + '.txt'
-    file = 'Results/labels' + model_num + '.txt'
-    result = decode_result_1(pre_file, file)
-    # result = decode_result_2(pre_file, file)
-    write_f(result, 'Results/201300086.txt')
+
+

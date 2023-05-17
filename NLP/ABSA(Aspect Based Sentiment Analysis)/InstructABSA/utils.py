@@ -175,3 +175,28 @@ class T5Classifier:
     def get_metrics(self, y_true, y_pred):
         return precision_score(y_true, y_pred, average='macro'), recall_score(y_true, y_pred, average='macro'), \
             f1_score(y_true, y_pred, average='macro'), accuracy_score(y_true, y_pred)
+
+def vote_4(a, b, c, d):
+    a, b, c, d = int(a), int(b), int(c), int(d)
+    tmp = 1
+    if a == b or a == c or a == d:
+        tmp = a
+    elif b == c or b == d:
+        tmp = b
+    elif c == d:
+        tmp = c
+    else:
+        tmp = 1
+    return str(tmp)
+
+
+def vote_3(a, b, c):
+    a, b, c = int(a), int(b), int(c)
+    tmp = 1
+    if a == b or a == c:
+        tmp = a
+    elif b == c:
+        tmp = b
+    else:
+        tmp = 1
+    return str(tmp)
