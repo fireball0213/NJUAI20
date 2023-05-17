@@ -41,11 +41,9 @@ def load_test(filename):
 
 # 转换成字典形式
 def process_standard_train(sentence, word, label, out_path):  # [{'term':'cab ride', 'polarity':'positive'}]
-    new_sentence = []
     new_words = []
     for i in range(len(word)):
         label[i] = label[i].replace('\n', '')
-        print(label[i], label_transform_vers(label[i]))
         new_words.append("[{'term':'" + word[i] + "', 'polarity':'" + label_transform_vers(label[i]) + "'}]")
 
     df = pd.DataFrame({'raw_text': sentence, 'aspectTerms': new_words})
@@ -55,11 +53,9 @@ def process_standard_train(sentence, word, label, out_path):  # [{'term':'cab ri
 
 
 def process_standard_test(sentence, word, out_path):  # [{'term':'cab ride', 'polarity':'positive'}]
-    new_sentence = []
     new_words = []
     for i in range(len(word)):
         new_words.append("[{'term':'" + word[i] + "', 'polarity':'" + str(i) + "'}]")
-
     df = pd.DataFrame({'raw_text': sentence, 'aspectTerms': new_words})
     # df输出csv文件
     df.to_csv(out_path, index=False, sep=',')

@@ -51,10 +51,8 @@ class T5Generator:
         torch.cuda.empty_cache()
         print('\nModel training started ....')
         trainer.train()
-        print('Model train successful!')
         # Save best model
         trainer.save_model()
-        print('Model save successful!')
         return trainer
 
 
@@ -101,13 +99,8 @@ class T5Generator:
 
 class T5Classifier:
     def __init__(self, model_checkpoint):
-        a1=time.time()
         self.tokenizer = AutoTokenizer.from_pretrained(model_checkpoint, force_download = False)#modify
-        a2=time.time()
-        print('load tokenizer time:', a2-a1,end="  ")
         self.model = T5ForConditionalGeneration.from_pretrained(model_checkpoint, force_download = False)#modify
-        a3=time.time()
-        print('load model time:', a3-a2,end="  ")
         self.data_collator = DataCollatorForSeq2Seq(self.tokenizer)
         self.device = 'cuda' if torch.has_cuda else ('mps' if torch.has_mps else 'cpu')
 

@@ -79,7 +79,7 @@ def Train(id_train_file_path, id_test_file_path, model_checkpoint, model_out_pat
 def inference(model_checkpoint, id_train_file_path, batch_size, mode='test'):
     # Load the data
     # id_train_file_path = 'Dataset/example_train.csv'
-    id_test_file_path = 'Dataset/example_test.csv'
+    id_test_file_path = id_train_file_path
     id_tr_df = pd.read_csv(id_train_file_path)
     id_te_df = pd.read_csv(id_test_file_path)
 
