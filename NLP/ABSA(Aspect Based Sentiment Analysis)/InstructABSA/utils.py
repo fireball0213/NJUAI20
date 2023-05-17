@@ -12,6 +12,7 @@ import time
 
 class T5Generator:
     def __init__(self, model_checkpoint):
+        print(f"Model checkpoint: {model_checkpoint}")  # 打印 model_checkpoint 的值
         self.tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
         self.model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
         self.data_collator = DataCollatorForSeq2Seq(self.tokenizer)
@@ -50,9 +51,10 @@ class T5Generator:
         torch.cuda.empty_cache()
         print('\nModel training started ....')
         trainer.train()
-
+        print('Model train successful!')
         # Save best model
         trainer.save_model()
+        print('Model save successful!')
         return trainer
 
 

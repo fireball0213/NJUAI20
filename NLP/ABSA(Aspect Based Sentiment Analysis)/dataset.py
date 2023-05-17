@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*- #
 """
 @filename:dataset.py
 @author:201300086
@@ -46,6 +45,8 @@ def process_standard_train(sentence, word, label, out_path):  # [{'term':'cab ri
     new_sentence = []
     new_words = []
     for i in range(len(word)):
+        label[i] = label[i].replace('\n', '')
+        print(label[i], label_transform_vers(label[i]))
         new_words.append("[{'term':'" + word[i] + "', 'polarity':'" + label_transform_vers(label[i]) + "'}]")
 
     df = pd.DataFrame({'raw_text': sentence, 'aspectTerms': new_words})
@@ -66,21 +67,6 @@ def process_standard(sentence, word, out_path):  # [{'term':'cab ride', 'polarit
     return sentence, new_words
 
 
-def process_standard_1(sentence, word, out_path):
-    words = []
-    # 有的句子对应了多个aspect term，需要将这些被同一个sentence对应的aspect term放在一起，保存在words中
-    for i in range(len(sentence)):
-        tmp = []
-        for j in range(len(sentence)):
-            if sentence[i] == sentence[j]:
-                tmp.append(word[j])
-        words.append(tmp)
-    df = pd.DataFrame({'raw_text': sentence, 'aspectTerms': word, 'Terms': words})
-    # df输出csv文件
-    df.to_csv(out_path, index=False, sep=',')
-    return sentence, word, words
-
-
 def label_transform(labels):  # 把none分类为0效果最好
     if 'positive' in labels:
         labels = '1'
@@ -88,12 +74,29 @@ def label_transform(labels):  # 把none分类为0效果最好
         labels = '-1'
     elif 'none' in labels:
         labels = '0'
-    else:
+    elif 'neutral' in labels:
         labels = '0'
+    else:
+        labels = '1'
+    return labels
+
+
+def label_transform_new(labels, a, b):  # 根据不同模型调整a,b
+    if 'positive' in labels:
+        labels = '1'
+    elif 'negative' in labels:
+        labels = '-1'
+    elif 'none' in labels:
+        labels = str(a)
+    elif 'neutral' in labels:
+        labels = '0'
+    else:
+        labels = str(b)
     return labels
 
 
 def label_transform_vers(labels):  # 反向转换
+    labels = labels.replace('\n', '').replace(" ", "")
     if labels == '1':
         labels = 'positive'
     elif labels == '-1':
@@ -113,14 +116,6 @@ def label_transform_vers(labels):  # 反向转换
 #             labels[i]='0'
 #     return labels
 
-def inference_transorm(labels):
-    # 将labels这个列表中的每个元素中冒号后的的值输出到一个列表中
-    new_labels = []
-    for i in range(len(labels)):
-        tmp = labels[i].split(':')[1]
-        new_labels.append(label_transform(tmp))
-    return new_labels
-
 
 def record_time(func):
     def wrapper(*args, **kwargs):  # 包装带参函数
@@ -134,35 +129,33 @@ def record_time(func):
 
 
 def write_f(label, file='201300086.txt'):
+    # 检验file是否存在
     with open(file, 'w', encoding='utf-8') as f:
         for i in range(len(label)):
             f.write(label[i] + '\n')
     print(file, "成功输出")
 
 
-def decode_result_1(pre_file, file):
-    with open(file, encoding='utf-8') as f:
-        text = f.readlines()
-        num_lst = []
-        word_lst = []
-        for i in range(len(text)):
-            # 读取每行从第一个冒号到第一个逗号的信息
-            tmp = text[i][text[i].find(':') + 1:]
-            num_lst.append(int(tmp))
-            word_lst.append(text[i][:text[i].find(':')])
-    with open(pre_file, encoding='utf-8') as f:
-        text = f.readlines()
-        pre_lst = []
-        for i in range(len(text)):
-            # 读取每行从word_lst[i]到第一个逗号的信息
-            tmp = text[i][text[i].find(':') + 1:text[i].find(',')]
-            pre_lst.append(label_transform(tmp))
-    print(word_lst)
-    print(pre_lst)
+def decode_result_1(labels, pred_labels):  # 反了，后面也是反的，懒得改
+    num_lst = []
+    word_lst = []
+    for i in range(len(pred_labels)):
+        # 读取每行从第一个冒号到第一个逗号的信息
+        tmp = pred_labels[i][pred_labels[i].find(':') + 1:]
+        num_lst.append(int(tmp))
+        word_lst.append(pred_labels[i][:pred_labels[i].find(':')])
+
+    pre_lst = []
+    for i in range(len(labels)):
+        # 读取每行从word_lst[i]到第一个逗号的信息
+        tmp = labels[i][labels[i].find(':') + 1:labels[i].find(',')]
+        pre_lst.append(label_transform(tmp))
+    # print(word_lst)
+    # print(pre_lst)
     # 将num_lst和pre_lst组合成字典，并按num_lst的值升序排序
     dic = dict(zip(num_lst, pre_lst))
     dic = sorted(dic.items(), key=lambda x: x[0])
-    print(dic)
+    # print(dic)
 
     # 提取dic中所有值
     values = []
@@ -171,36 +164,33 @@ def decode_result_1(pre_file, file):
     return values
 
 
-def decode_result_2(pre_file, file):
-    with open(file, encoding='utf-8') as f:
-        text = f.readlines()
-        num_lst = []
-        word_lst = []
-        for i in range(len(text)):
-            # 读取每行从第一个冒号到第一个逗号的信息
-            tmp = text[i][text[i].find(':') + 1:]
-            num_lst.append(int(tmp))
-            word_lst.append(text[i][:text[i].find(':')])
-    with open(pre_file, encoding='utf-8') as f:
-        text = f.readlines()
-        pre_lst = []
-        for i in range(len(text)):
-            tmp = text[i][text[i].find(word_lst[i]) + len(word_lst[i]) + 1:]
-            if tmp.find(',') == -1:
-                # 除去tmp中换行符
-                tmpp = tmp.replace('\n', '')
-                # print(word_lst[i], '|', tmpp)
-                pre_lst.append(label_transform(tmpp))
-            else:
-                tmpp = tmp[:tmp.find(',')].replace('\n', '')
-                # print(word_lst[i], '|', tmpp)
-                pre_lst.append(label_transform(tmpp))
-    print(word_lst)
-    print(pre_lst)
+def decode_result_2(pred_labels, labels, a, b):
+    num_lst = []
+    word_lst = []
+    for i in range(len(labels)):
+        # 读取每行从第一个冒号到第一个逗号的信息
+        tmp = labels[i][labels[i].find(':') + 1:]
+        num_lst.append(int(tmp))
+        word_lst.append(labels[i][:labels[i].find(':')])
+
+    pre_lst = []
+    for i in range(len(pred_labels)):
+        tmp = pred_labels[i][pred_labels[i].find(word_lst[i]) + len(word_lst[i]) + 1:]
+        if tmp.find(',') == -1:
+            # 除去tmp中换行符
+            tmpp = tmp.replace('\n', '')
+            # print(word_lst[i], '|', tmpp)
+            pre_lst.append(label_transform_new(tmpp, a, b))
+        else:
+            tmpp = tmp[:tmp.find(',')].replace('\n', '')
+            # print(word_lst[i], '|', tmpp)
+            pre_lst.append(label_transform_new(tmpp, a, b))
+    # print(word_lst)
+    # print(pre_lst)
     # 将num_lst和pre_lst组合成字典，并按num_lst的值升序排序
     dic = dict(zip(num_lst, pre_lst))
     dic = sorted(dic.items(), key=lambda x: x[0])
-    print(dic)
+    # print(dic)
 
     # 提取dic中所有值
     values = []
@@ -210,9 +200,8 @@ def decode_result_2(pre_file, file):
 
 
 if __name__ == "__main__":
-    sentence, word = load_test('Dataset/test.txt')
-    sentence, word = process_standard(sentence, word, 'Dataset/test_standard.csv')
-    sentence, word, words = process_standard_1(sentence, word, 'Dataset/test_standard_plus.csv')
+    # sentence, word = load_test('Dataset/test.txt')
+    # sentence, word = process_standard(sentence, word, 'Dataset/test_standard.csv')
 
     sentence_tr, word_tr, label_tr = load_train('Dataset/train.txt')
     sentence_tr, word_tr, label_tr = process_standard_train(sentence_tr, word_tr, label_tr,
@@ -224,78 +213,9 @@ if __name__ == "__main__":
     #     results1.append(label_transform(result_lst2[i]))
     # print(results1)
     # write_f(results1, 'Results/201300086.txt')
-
-    pre_file = 'Results/pred_labels3.txt'
-    file = 'Results/labels3.txt'
+    model_num = str(2)
+    pre_file = 'Results/pred_labels' + model_num + '.txt'
+    file = 'Results/labels' + model_num + '.txt'
     result = decode_result_1(pre_file, file)
     # result = decode_result_2(pre_file, file)
     write_f(result, 'Results/201300086.txt')
-
-# 失败的造轮子：
-# 将joint预训练模型输出的打乱的预测结果梳理成正常顺序的标记
-# def decode_result(result_lst1,sentence,word,words):#sentence和word是两个等长列表，分别存放句子和对应的aspect term
-#     # 将result_lst1中重复元素去除
-#     result_lst1 = list(set(result_lst1))
-#     print(result_lst1)
-#     # 将result_lst1中每个元素都转化为一个字典，这个元素中的冒号的个数代表了的键值对的个数，其中每个键值对的键是冒号前的aspect term，值是冒号后的标记
-#     result_lst2 = []
-#     for i in range(len(result_lst1)):
-#         tmp1 = result_lst1[i].split(',')
-#         tmp=[]
-#         #删除tmp中不含冒号的元素
-#         for j in range(len(tmp1)):
-#             if ":" in tmp1[j]:
-#                 tmp.append(tmp1[j])
-#         tmp_dict = {}
-#         for j in range(len(tmp)):
-#             tmp_dict[tmp[j].split(':')[0]] = tmp[j].split(':')[1]
-#         #去掉tmp_dict中所有键首尾和值首尾的空格,将更新后的键值存成新的字典
-#         tmp_dict1={}
-#         for key,value in tmp_dict.items():
-#             # tmp_dict1[key.replace(' ','')] = value.replace(' ','')
-#             if key.startswith(' '):
-#                 key=key[1:]
-#             if key.endswith(' '):
-#                 key=key[:-1]
-#             if value.startswith(' '):
-#                 value=value[1:]
-#             if value.endswith(' '):
-#                 value=value[:-1]
-#             tmp_dict1[key]=value
-#         result_lst2.append(tmp_dict1)
-#     print(result_lst2)
-#
-#     fail_lst=[]
-#     for i in range(len(sentence)):
-#         success=0
-#         for j in range(len(result_lst2)):
-#             #如果words[i]中所有元素都是result_lst2[j]中的键值，而且len(words[i])==result_lst2[j]中键值对的个数，输出result_lst2[j]
-#             if all([x in result_lst2[j].keys() for x in words[i]]) and len(words[i])-len(result_lst2[j])==0:#
-#                 print(f'({i}/{len(sentence)}): {result_lst2[j]} | {words[i]} | {word[i]} | {sentence[i]}')
-#                 success=1
-#         if success==0:
-#             fail_lst.append(i)
-#     for i in fail_lst:
-#         print(f'(fail:{i}/{len(sentence)}): {sentence[i]} | {words[i]} | {word[i]}')
-#         # 输出result_lst2中所有包含以word[i]为键的字典
-#         for j in range(len(result_lst2)):
-#             if word[i] in result_lst2[j].keys():
-#                 print(result_lst2[j])
-#
-#     print(len(fail_lst))
-
-# fail_lst=[]
-# for i in range(len(sentence)):
-#     success=0
-#     for j in range(len(result_lst1)):
-#         #如果words[i]中所有元素都在result_lst1[j]中，而且len(words[i])==result_lst1[j]中冒号的个数，输出result_lst1[j]
-#         if all([x in result_lst1[j] for x in words[i]]) and len(words[i])==result_lst1[j].count(':'):
-#             #判断words[i]中所有元素在result_lst1[j]中时是否在开头位置，或者前一个非空格字符是逗号，或后一个字符非空格字符是冒号
-#             if result_lst1[j][result_lst1[j].find(words[i][-1])+len(words[i])]==':':
-#                 print(f'({i}/{len(sentence)}): {result_lst1[j]} | {words[i]} | {word[i]}')
-#                 success=1
-#     if success==0:
-#         fail_lst.append(i)
-# for i in fail_lst:
-#     print(f'(fail:{i}/{len(sentence)}): {sentence[i]} | {words[i]} | {word[i]}')
-# print(len(fail_lst))

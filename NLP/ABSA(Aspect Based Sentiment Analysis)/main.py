@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*- #
 """
 @filename:main.py
 @author:201300086
@@ -7,37 +6,29 @@
 import os
 import time
 import warnings
-
-warnings.filterwarnings('ignore')
 import pandas as pd
 import torch
 from InstructABSA.data_prep import DatasetLoader
 from InstructABSA.utils import T5Generator, T5Classifier
 from InstructABSA.config import Config
 from instructions import InstructionsHandler
-from dataset import load_test, label_transform, write_f, inference_transorm, \
+from dataset import load_test, label_transform, write_f, \
     record_time, decode_result_1, decode_result_2
 
+warnings.filterwarnings('ignore')
 try:
     use_mps = True if torch.has_mps else False
 except:
     use_mps = False
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-def train():
-    task_name = 'joint_task'
-    # model_checkpoint = 'allenai/tk-instruct-base-def-pos'
-    model_checkpoint = 'kevinscaria/joint_tk-instruct-base-def-pos-neg-neut-combined'
-    # model_checkpoint='kevinscaria/atsc_tk-instruct-base-def-pos-neg-neut-combined'
 
-    model_out_path = './Models'
-    model_out_path = os.path.join(model_out_path, task_name,
-                                  f"{model_checkpoint.replace('/', '')}")
-    print('Model output path: ', model_out_path)
+def train(id_train_file_path, id_test_file_path, model_checkpoint, model_out_path):
+    # 输出路径中加上当前时间#model_out_path=os.path.join(model_checkpoint,"train")
 
-    # Load the data
-    id_train_file_path = 'Dataset/train_standard.csv'
-    id_test_file_path = 'Dataset/test_standard.csv'
+    # print('Model output path: ', model_out_path)
+
     id_tr_df = pd.read_csv(id_train_file_path)
     id_te_df = pd.read_csv(id_test_file_path)
 
@@ -73,7 +64,7 @@ def train():
         'evaluation_strategy': "epoch",
         'learning_rate': 5e-5,
         'lr_scheduler_type': 'cosine',
-        'per_device_train_batch_size': 8,
+        'per_device_train_batch_size': 32,
         'per_device_eval_batch_size': 16,
         'num_train_epochs': 4,
         'weight_decay': 0.01,
@@ -88,16 +79,16 @@ def train():
 
     # Train model
     model_trainer = t5_exp.train(id_tokenized_ds, **training_args)
-    return model_out_path
+    return model_trainer
 
 
 @record_time
-def inference_sentence(sentence, word):
+def inference_sentence(sentence, word, model_checkpoint):
     # Set Global Values
     config = Config()
     instruct_handler = InstructionsHandler()
     instruct_handler.load_instruction_set2()
-    model_checkpoint = config.model_checkpoint
+    # model_checkpoint = config.model_checkpoint
     indomain = 'bos_instruct1'
     t5_exp = T5Classifier(model_checkpoint)
 
@@ -108,21 +99,16 @@ def inference_sentence(sentence, word):
     labels = []
     for i in range(len(sentence)):
         model_input = bos_instruction_id + sentence[i] + f'. The aspect term is: {word[i]}' + eos_instruction
-        a1 = time.time()
         input_ids = t5_exp.tokenizer(model_input, return_tensors="pt").input_ids
-        a2 = time.time()
         outputs = t5_exp.model.generate(input_ids, max_length=config.max_token_length)
-        a3 = time.time()
-        print('t2:', a3 - a2, end="  ")
         label = t5_exp.tokenizer.decode(outputs[0], skip_special_tokens=True)
-        print()
         print(f'({i}/{len(sentence)}): {label_transform(label)} | {sentence[i]} | {word[i]}')
         labels.append(label_transform(label))
     return labels
 
 
 @record_time
-def inference(model_checkpoint, id_train_file_path='Dataset/example_train.csv'):
+def inference(model_checkpoint, id_train_file_path, batch_size, mode='test'):
     # Load the data
     # id_train_file_path = 'Dataset/example_train.csv'
     id_test_file_path = 'Dataset/example_test.csv'
@@ -158,42 +144,148 @@ def inference(model_checkpoint, id_train_file_path='Dataset/example_train.csv'):
         t5_exp.tokenize_function_inputs)
 
     # Get prediction labels - Training set
-    id_tr_pred_labels = t5_exp.get_labels(tokenized_dataset=id_tokenized_ds, sample_set='train', batch_size=1)
+    id_tr_pred_labels = t5_exp.get_labels(tokenized_dataset=id_tokenized_ds, sample_set='train', batch_size=batch_size)
     id_tr_labels = [i.strip() for i in id_ds['train']['labels']]
     return id_tr_pred_labels, id_tr_labels
 
 
+import numpy as np
+
+
+def vote(a, b, c, d):
+    a, b, c, d = int(a), int(b), int(c), int(d)
+    tmp = 1
+    if a == b or a == c or a == d:
+        tmp = a
+    elif b == c or b == d:
+        tmp = b
+    elif c == d:
+        tmp = c
+    else:
+        tmp = 1
+    return str(tmp)
+
+
+def vote_3(a, b, c):
+    a, b, c = int(a), int(b), int(c)
+    tmp = 1
+    if a == b or a == c:
+        tmp = a
+    elif b == c:
+        tmp = b
+    else:
+        tmp = 1
+    return str(tmp)
+
+
+def model_sentence(num, model, eval=True):
+    file = 'Results/sentence_' + str(num) + '_0.txt'
+    if eval == False:
+        with open(file, 'r') as f:
+            results1 = f.readlines()
+    else:
+        sentence, word = load_test('Dataset/test.txt')
+        results1 = inference_sentence(sentence, word, model)
+        write_f(results1, file)
+    return results1
+
+
+def model_joint(num, model, eval=True, batch_size=8, mode='test'):
+    file = 'Results/joint_' + str(num) + '_' + str(batch_size) + '.txt'
+    # file='Results/201300086.txt'
+    if num == 2:
+        a = 0
+        b = 1
+    else:
+        a = 1
+        b = 1
+    if eval == False:
+        with open(file, 'r') as f:
+            result = f.readlines()
+    else:
+        if mode == 'test':
+            pred_labels, labels = inference(model_checkpoint=model, id_train_file_path='Dataset/test_standard.csv',
+                                            batch_size=batch_size)
+            # print(pred_labels)#打乱后的预测值
+            # print(labels)#标签标记了原有顺序
+            result = decode_result_2(pred_labels, labels, a, b)
+            write_f(result, file)
+
+        else:  # 计算测试集上准确率
+            # TODO:输出带序号文件
+            pred_labels, labels = inference(model_checkpoint=model, id_train_file_path='Dataset/train_standard.csv',
+                                            batch_size=batch_size, mode=mode)
+            result = decode_result_2(pred_labels, labels, a, b)
+            file = 'Results/joint_train' + str(num) + '.txt'
+            write_f(result, file)
+            # 计算准确率并输出
+    return result
+
+
+def model_test(num, model_out_path, batch_size, eval=True):
+    # file='Results/201300086.txt'
+    file = 'Results/joint_train_' + model_out_path[-1] + '.txt'
+    if eval == False:
+        with open(file, 'r') as f:
+            result = f.readlines()
+    else:
+        if num == 2:
+            a = 0
+            b = 1
+        elif num == 1:
+            a = 1
+            b = 1
+        else:
+            a = 1
+            b = 0
+        pred_labels, labels = inference(model_checkpoint=model_out_path, id_train_file_path='Dataset/test_standard.csv',
+                                        batch_size=batch_size)
+        # print(pred_labels)#打乱后的预测值
+        # print(labels)#标签标记了原有顺序
+        result = decode_result_2(pred_labels, labels, a, b)
+        write_f(result, file)
+    return result
+
+
 if __name__ == "__main__":
-    # 0.81@
-    # sentence,word=load_test('Dataset/test1.txt')
-    # results=inference_sentence(sentence, word)
-    # # print(results)
-    # write_f(results, 'Results/201300086.txt')
-
-    # 0.7964@ kevinscaria/joint_tk-instruct-base-def-pos-neg-neut-combined
-    # 0.8044(none=0) 0.80625@(none=1)kevinscaria/joint_tk-instruct-base-def-pos-combined
-    # kevinscaria/joint_tk-instruct-base-def-pos-neg-neut-laptops
-    # kevinscaria/joint_tk-instruct-base-def-pos-laptops
-    # kevinscaria/joint_tk-instruct-base-def-pos-neg-neut-restaurants
-    # kevinscaria/joint_tk-instruct-base-def-pos-restaurants
-    pred_labels, labels = inference(model_checkpoint='kevinscaria/joint_tk-instruct-base-def-pos-restaurants'
-                                    , id_train_file_path='Dataset/test_standard.csv')
-    print(pred_labels)
-    print(labels)
-    pre_file = 'Results/pred_labels6.txt'
-    file = 'Results/labels6.txt'
-    # 将上面两个列表存入文件
-    write_f(pred_labels, pre_file)
-    write_f(labels, file)
-    result = decode_result_1(pre_file, file)
-    write_f(result, 'Results/201300086.txt')
-
     # results1 = []
     # for i in range(len(results)):
     #     results1.append(label_transform(results[i]))
     # print(results1)
     # write_f(results1, 'Results/201300086.txt')
 
-    # model_out_path=train()
+    # Train
+    id_train_file_path = 'Dataset/train_standard.csv'
+    id_test_file_path = 'Dataset/train_standard.csv'
+    # model_checkpoint = 'Models/joint_task/kevinscariajoint_tk-instruct-base-def-pos-combined'
+    model_checkpoint = 'Models/joint_task/kevinscariajoint_tk-instruct-base-def-pos-neg-neut-combined'  # num=1,0.7633# num=2,0.8160
+    model_out_path = os.path.join(model_checkpoint, 'train1')
+    # model_trainer=train(id_train_file_path, id_test_file_path,model_checkpoint=model_checkpoint,model_out_path=model_out_path)
+    # Test
 
-#
+    result1 = model_test(2, model_out_path, 32, eval=False)
+    model_out_path2 = 'Models/joint_task/kevinscariajoint_tk-instruct-base-def-pos-combined/train2'  # num=1,0.7553# num=2,0.8026
+    result2 = model_test(2, model_out_path2, 32, eval=False)
+
+    # 投票集成
+    # result1=model_sentence(1,model='Models/astk_task/kevinscariaatsc_tk-instruct-base-def-pos-combined')# 0.81@
+    # result2=model_sentence(2,model='Models/astk_task/kevinscariaatsc_tk-instruct-base-def-pos-neg-neut-combined')#0.7964
+    # 0.8125（none=1,else=1）0.7919(none=1,else=0)0.7919(none=0,else=1)
+    result3 = model_joint(1, eval=False, batch_size=32,
+                          model='Models/joint_task/kevinscariajoint_tk-instruct-base-def-pos-neg-neut-combined')
+    # 0,8069(none=1,else=1)0.8142(none=0,else=1)0.7982(none=1,else=0)
+    result4 = model_joint(2, eval=False, batch_size=32,
+                          model='Models/joint_task/kevinscariajoint_tk-instruct-base-def-pos-combined')
+
+    result = []
+    tmp_lst = []
+    for i in range(len(result1)):
+        result.append(vote_3(result1[i], result1[i], result4[i]))
+        # result.append(vote(result1[i],result2[i],result3[i],result4[i]))
+    # 将结果写入文件
+    write_f(result, 'Results/201300086.txt')
+
+# 1234：8151
+# 234:8232
+# 123:8098
+# 124:8151
