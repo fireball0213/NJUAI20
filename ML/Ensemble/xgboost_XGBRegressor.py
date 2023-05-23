@@ -19,7 +19,7 @@ from sklearn.linear_model import LinearRegression
 import joblib
 import matplotlib
 from sklearn.metrics import mean_squared_error
-from my_plot import plot_error, plot_error_history, plot_features_importance
+from my_plot import plot_error_estimator, plot_error_history, plot_features_importance, plot_pred
 
 font = {'family': 'Times New Roman', 'size': 18}
 matplotlib.rc('font', **font)
@@ -33,9 +33,6 @@ def get_pretrain_features(file):
     data = pd.read_csv(file)
     y = data[data.columns[0]].values.astype(float)
     level = data[data.columns[1]].values
-    death = data[data.columns[2]].values
-    hurt = data[data.columns[3]].values
-    depth = data[data.columns[4]].values
     test = pd.read_csv('test.csv')
     test = test.values.astype(float)
     l = []
@@ -49,15 +46,6 @@ def get_pretrain_features(file):
 
 def Ensemble(train_features, train_labels, test_features):
     train_features, X_val, train_labels, y_val = train_test_split(train_features, train_labels, test_size=0.2, random_state=42)
-    # 使用线性回归基学习器进行回归任务
-    lr = LinearRegression()
-    rf = RandomForestRegressor(n_estimators=30, random_state=42, n_jobs=-1)  # , oob_score=True
-    bag = BaggingRegressor(random_state=42, base_estimator=rf, n_estimators=10, n_jobs=-1)
-    gb = GradientBoostingRegressor(random_state=42)  # 0.783
-    # Stacking学习法集成
-    # clf = StackingRegressor(estimators=[('rf', rf), ('bag', bag)],final_estimator=xgb, passthrough=True, verbose=1,n_jobs=-1)
-    # Voting投票法集成
-    # clf = VotingRegressor(estimators=[('rf', rf),  ('xgb', xgb),  ('gb', gb)])
 
     # 使用早停机制，在验证集的评估指标不再改进时停止训练
     eval_set = [(train_features, train_labels), (X_val, y_val)]
@@ -65,32 +53,10 @@ def Ensemble(train_features, train_labels, test_features):
     # 使用xgboost方法进行回归任务
     xgb = XGBRegressor(random_state=42, n_jobs=-1, learning_rate=0.02, n_estimators=500, max_depth=4,min_child_weight= 9
                        , subsample=0.6,colsample_bytree=1,gamma=0.5,reg_alpha=0.2,reg_lambda=0.4)
-    #使用网格搜索
-    #'colsample_bytree': [0.6, 0.7, 0.8, 0.9, 1], 'gamma': [0, 0.1, 0.2, 0.3, 0.4,0.5],
-    #    'max_depth': [3, 4, 5, 6, 7, 8, 9, 10],'learning_rate': [0.02, 0.05,0.08, 0.1],
-    #    'min_child_weight': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],'subsample': [0.6, 0.7, 0.8, 0.9, 1]
-    #
-    # param_grid = {'reg_alpha': [0, 0.1, 0.2, 0.3, 0.4, 0.5], 'reg_lambda': [0, 0.1, 0.2, 0.3, 0.4, 0.5] }
-    # grid_search = GridSearchCV(xgb, param_grid, cv=5, scoring='neg_mean_squared_error')
-    # grid_search.fit(train_features, train_labels, eval_metric="rmse", eval_set=eval_set, early_stopping_rounds=20, verbose=True)
-    # print(grid_search.best_params_)
-    # print(grid_search.best_score_)
-
-    ada = AdaBoostRegressor(base_estimator=rf,learning_rate=0.01, n_estimators=100, random_state=42)
-    # 使用网格搜索调参ada
-    # param_grid = {'learning_rate': [ 0.001, 0.01, 0.1,0.02,0.005], 'n_estimators': [50, 100, 200, 300, 400, 500],}
-    # grid_search = GridSearchCV(ada, param_grid, cv=5, scoring='neg_mean_squared_error')
-    # grid_search.fit(train_features, train_labels)
-    # print(grid_search.best_params_)
-    # print(grid_search.best_score_)
-
     clf = xgb
-    # clf=ada
-
 
     # 训练模型
     clf.fit(train_features, train_labels, eval_metric="rmse", eval_set=eval_set, early_stopping_rounds=20)
-    # clf.fit(train_features, train_labels)
     # joblib.dump(clf, 'model_xgbbest.pkl')
 
     # 加载模型
@@ -115,29 +81,19 @@ def Ensemble(train_features, train_labels, test_features):
 
     print("交叉验证平均MSE损失：", scores0.mean(),scores1.mean(),scores2.mean())
     print("决定系数R^2：", clf.score(train_features, train_labels))
-    # print("全部数据MSE，RMSE：",mse(train_labels,preds_train),rmse(train_labels,preds_train))
     print("测试输出：", preds)
 
     # 误差下降曲线
-    # plot_error_history(train_features, train_labels, clf)
+    plot_error_history(train_features, train_labels, clf)
+    plot_error_estimator(train_features, train_labels, test_features)
     # 绘制特征重要性
-    # plot_features_importance(train_features, train_labels, clf)
+    plot_features_importance(train_features, train_labels, clf)
     # 画图对比原数据和预测后数据，看是否拟合
-    # plt.plot(train_labels, color='blue', label='true', linestyle='-', marker='o')
-    # plt.plot(preds_train, color='red', label='predict', linestyle='-', marker='+')
-    # # 调整图纸大小.使宽度更大
-    # plt.rcParams['figure.figsize'] = (20.0, 8.0)  # 单位是inches
-    # # 给图像添加横纵坐标
-    # plt.title('true and predict')
-    # plt.xlabel('data')
-    # plt.ylabel('damage')
-    # plt.legend()
-    # plt.show()
-
+    plot_pred(train_labels, preds_train)
 
 
 if __name__ == '__main__':
     file = "data.csv"
     x, y, test = get_pretrain_features(file)
     Ensemble(x, y, test)
-    # plot_error(x,y, test)
+

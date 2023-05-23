@@ -19,7 +19,7 @@ plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['font.sans-serif'] = ['SimHei']
 
 
-def plot_error(train_features, train_labels, test_features):
+def plot_error_estimator(train_features, train_labels, test_features):
     n_estimators = [50, 100, 150, 200, 250, 300]
     train_errors = []
 
@@ -66,4 +66,16 @@ def plot_features_importance(train_features, train_labels, clf):
     feature_names = ["level", "death", "hurt", "depth"]  # 特征的名称
     plt.xticks(range(train_features.shape[1]), [feature_names[i] for i in indices], rotation=0, c="red")
     plt.xlim([-1, train_features.shape[1]])
+    plt.show()
+
+def plot_pred(train_labels,preds_train):
+    plt.plot(train_labels, color='blue', label='true', linestyle='-', marker='o')
+    plt.plot(preds_train, color='red', label='predict', linestyle='-', marker='+')
+    # # 调整图纸大小.使宽度更大
+    plt.rcParams['figure.figsize'] = (20.0, 8.0)  # 单位是inches
+    # # 给图像添加横纵坐标
+    plt.title('true and predict')
+    plt.xlabel('data')
+    plt.ylabel('damage')
+    plt.legend()
     plt.show()
