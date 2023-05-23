@@ -20,9 +20,9 @@ clf.fit(train_features, train_labels, eval_metric="rmse", eval_set=eval_set, ear
 
 > 折数越大，MSE越小
 
-<img src="C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230524004309240.png" alt="image-20230524004309240" style="zoom:50%;" />
+<img src="./README.assets/image-20230524004309240.png" alt="image-20230524004309240" style="zoom:50%;" />
 
-![image-20230524004022732](C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230524004022732.png)
+![image-20230524004022732](./README.assets/image-20230524004022732.png)
 
 #### 三、结果分析
 
@@ -33,12 +33,12 @@ clf.fit(train_features, train_labels, eval_metric="rmse", eval_set=eval_set, ear
 
 - 基学习器数量对MSE的影响：
 
-<img src="C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230524004643855.png" alt="image-20230524004643855" style="zoom:67%;" />
+<img src="./README.assets/image-20230524004643855.png" alt="image-20230524004643855" style="zoom:67%;" />
 
 - 训练轮数对MSE影响
 
-<img src="C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230524004710758.png" alt="image-20230524004710758" style="zoom:67%;" />
+<img src="./README.assets/image-20230524004710758.png" alt="image-20230524004710758" style="zoom:67%;" />
 
 - 变量重要性分析：
 
-<img src="C:\Users\Shawn\AppData\Roaming\Typora\typora-user-images\image-20230524003955615.png" alt="image-20230524003955615" style="zoom: 50%;" />
+<img src="./README.assets/image-20230524003955615.png" alt="image-20230524003955615" style="zoom: 50%;" />
