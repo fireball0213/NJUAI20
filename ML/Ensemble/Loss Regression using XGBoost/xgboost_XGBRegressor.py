@@ -79,10 +79,6 @@ def Ensemble(train_features, train_labels, test_features):
     preds_train = clf.predict(train_features)
 
 
-    print("交叉验证平均MSE损失：", scores0.mean(),scores1.mean(),scores2.mean())
-    print("决定系数R^2：", clf.score(train_features, train_labels))
-    print("测试输出：", preds)
-
     # 误差下降曲线
     plot_error_history(train_features, train_labels, clf)
     plot_error_estimator(train_features, train_labels, test_features)
@@ -90,6 +86,12 @@ def Ensemble(train_features, train_labels, test_features):
     plot_features_importance(train_features, train_labels, clf)
     # 画图对比原数据和预测后数据，看是否拟合
     plot_pred(train_labels, preds_train)
+
+    print("2折交叉验证平均MSE损失：", scores0.mean())
+    print("5折交叉验证平均MSE损失：", scores1.mean())
+    print("10折交叉验证平均MSE损失：", scores2.mean())
+    print("决定系数R^2：", clf.score(train_features, train_labels))
+    print("测试输出：", preds)
 
 
 if __name__ == '__main__':
