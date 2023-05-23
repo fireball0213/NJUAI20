@@ -19,6 +19,7 @@ from sklearn.linear_model import LinearRegression
 import joblib
 import matplotlib
 from sklearn.metrics import mean_squared_error
+from my_plot import plot_error, plot_error_history, plot_features_importance
 
 font = {'family': 'Times New Roman', 'size': 18}
 matplotlib.rc('font', **font)
@@ -45,63 +46,6 @@ def get_pretrain_features(file):
     x = np.hstack((level, x))
     return x, y, test
 
-
-def plot_error(train_features, train_labels, test_features):
-
-    n_estimators = [50, 100, 150, 200, 250, 300]
-    train_errors = []
-
-    for n in n_estimators:
-        xgb = XGBRegressor(random_state=42, n_jobs=-1, learning_rate=0.1, n_estimators=n, max_depth=5)
-        xgb.fit(train_features, train_labels)
-        train_pred = xgb.predict(train_features)
-        train_errors.append(mean_squared_error(train_labels, train_pred))
-
-    plt.figure(figsize=(10, 5))
-    plt.plot(n_estimators, train_errors, label='Training error')
-    plt.ylabel('Mean Squared Error')
-    plt.xlabel('Number of Estimators')
-    plt.title('XGBoost - Effect of n_estimators on error')
-    plt.legend()
-    plt.show()
-
-
-def plot_error_history(train_features, train_labels,clf):
-    eval_set = [(train_features, train_labels)]
-    clf.fit(train_features, train_labels, eval_metric="rmse", eval_set=eval_set, verbose=True)
-
-    # 获取历史误差
-    results = clf.evals_result()
-    epochs = len(results['validation_0']['rmse'])
-
-    # 绘制历史误差
-    fig, ax = plt.subplots()
-    ax.plot(range(0, epochs), results['validation_0']['rmse'], label='Train')
-    ax.legend()
-    plt.xlabel('epochs')
-    plt.ylabel('MSE')
-    plt.title('XGBoost MSE')
-    plt.show()
-
-def plot_features_importance(train_features, train_labels,clf):
-    importances = clf.feature_importances_
-    indices = np.argsort(importances)[::-1]
-    plt.figure(figsize=(10, 5))
-    plt.title("Feature importances")
-    plt.bar(range(train_features.shape[1]), importances[indices],
-            color="purple", align="center")
-    feature_names = ["level", "death", "hurt", "depth"]  # 特征的名称
-    plt.xticks(range(train_features.shape[1]), [feature_names[i] for i in indices], rotation=0, c="red")
-    plt.xlim([-1, train_features.shape[1]])
-    plt.show()
-
-#计算均方误差的函数
-def rmse(y_test, y):
-    return np.sqrt(mean_squared_error(y_test, y))
-
-#计算MSE的函数
-def mse(y_test, y):
-    return mean_squared_error(y_test, y)
 
 def Ensemble(train_features, train_labels, test_features):
     train_features, X_val, train_labels, y_val = train_test_split(train_features, train_labels, test_size=0.2, random_state=42)
@@ -147,7 +91,7 @@ def Ensemble(train_features, train_labels, test_features):
     # 训练模型
     clf.fit(train_features, train_labels, eval_metric="rmse", eval_set=eval_set, early_stopping_rounds=20)
     # clf.fit(train_features, train_labels)
-    joblib.dump(clf, 'model_xgbbest.pkl')
+    # joblib.dump(clf, 'model_xgbbest.pkl')
 
     # 加载模型
     # clf = joblib.load('model_xgb.pkl')
@@ -189,8 +133,6 @@ def Ensemble(train_features, train_labels, test_features):
     # plt.ylabel('damage')
     # plt.legend()
     # plt.show()
-
-
 
 
 
