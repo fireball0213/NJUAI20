@@ -164,18 +164,13 @@ def decode_result_2(pred_labels, labels, a, b):
         if tmp.find(',') == -1:
             # 除去tmp中换行符
             tmpp = tmp.replace('\n', '')
-            # print(word_lst[i], '|', tmpp)
             pre_lst.append(label_transform_new(tmpp, a, b))
         else:
             tmpp = tmp[:tmp.find(',')].replace('\n', '')
-            # print(word_lst[i], '|', tmpp)
             pre_lst.append(label_transform_new(tmpp, a, b))
-    # print(word_lst)
-    # print(pre_lst)
     # 将num_lst和pre_lst组合成字典，并按num_lst的值升序排序
     dic = dict(zip(num_lst, pre_lst))
     dic = sorted(dic.items(), key=lambda x: x[0])
-    # print(dic)
 
     # 提取dic中所有值
     values = []
