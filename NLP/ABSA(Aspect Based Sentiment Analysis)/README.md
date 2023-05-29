@@ -1,8 +1,7 @@
-4. ## ABSA(Aspect Based Sentiment Analysis)属性级情感分类
+# ABSA(Aspect Based Sentiment Analysis)属性级情感分类
 
    > 南京大学2023春季自然语言处理课程第二次打榜作业
-   
-   201300086 史浩男 shi.hn@foxmail.com
+  
 
    ![image-20230517222930181](./README.assets/image-20230517222930181.png)
    
