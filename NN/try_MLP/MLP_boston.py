@@ -1,6 +1,6 @@
 """
 使用定义好的MLP来预测波士顿房价（506个样本和13个特征）
-固定num_epochs=5, batch_size=8：
+SGD优化器，固定num_epochs=5, batch_size=8：
 1.探究数据归一化的影响
 2.探究不同的loss function
 3.探究不同的learning rate，以及learning rate scheduler的影响
@@ -19,6 +19,7 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 from torch.optim.lr_scheduler import StepLR
+from utils import timer, evaluate, Plot_data,plot_boston_loss,plot_boston_pred
 
 
 class MLP(nn.Module):
@@ -40,25 +41,6 @@ class MLP(nn.Module):
         x = self.a2(x)
         output = self.regression(x)
         return output
-
-
-def plot_loss(train_losses, criterion, learning_rate):
-    plt.plot(train_losses, label='Training Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.title('loss_func=' + str(criterion) + ',lr=' + str(learning_rate))
-    plt.legend()
-    plt.show()
-
-
-def plot_pred(y_val_tensor, val_outputs, criterion, learning_rate):
-    plt.plot(y_val_tensor[:, 0], label='True Values')
-    plt.plot(val_outputs.flatten(), label='Predictions')
-    plt.xlabel('True Values')
-    plt.ylabel('Values')
-    plt.legend()
-    plt.title('Values with ' + 'loss_func=' + str(criterion) + ',lr_init=' + str(learning_rate))
-    plt.show()
 
 
 def train(model, X_train, y_train, X_val, y_val,
@@ -118,9 +100,9 @@ def train(model, X_train, y_train, X_val, y_val,
     model.eval()
 
     # Draw the changes of the training loss
-    plot_loss(train_losses, criterion, learning_rate)
+    plot_boston_loss(train_losses, criterion, learning_rate)
     # 对比验证集上的预测值和真实值
-    plot_pred(y_val_tensor, val_outputs, criterion, learning_rate)
+    plot_boston_pred(y_val_tensor, val_outputs, criterion, learning_rate)
 
     return model
 
