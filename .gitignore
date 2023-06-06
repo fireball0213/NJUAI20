@@ -1,9 +1,9 @@
 
-/.idea/
-/.settings/
-/.vscode/
-/.zip/
-/.assets/
-/.xml/
+.idea
+.settings
+.vscode
+*.zip
+*.assets
+*.xml
+*.iml
 
-/HSEA/.idea/

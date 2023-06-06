@@ -1,3 +1,7 @@
+"""
+使用感知机（Perceptron）实现双月数据集的分类
+"""
+
 # -*- coding: UTF-8 -*- #
 """
 @filename:double_moon.py
