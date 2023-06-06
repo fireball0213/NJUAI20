@@ -3,6 +3,7 @@ My course projects and notes of undergraduate courses in NJUAI
 
 ## Course Projects  
 >In time-descending order
+* Optimize MLP : `NN/try_MLP`  [![github](https://img.shields.io/badge/time-2023--06-9cf)](https://github.com/time-2023--06-9cf)
 * ABSA(Aspect Based Sentiment Analysis) : `NLP/`  [![github](https://img.shields.io/badge/time-2023--05-9cf)](https://github.com/time-2023--05-9cf)
 * AutoEncoder in Real Data Compression : `PR_CV/hw3/Problem6.py` [![github](https://img.shields.io/badge/time-2023--05-9cf)](https://github.com/time-2023--05-9cf)
 * Loss Regression using XGBoost : `ML/Ensemble/`  [![github](https://img.shields.io/badge/time-2023--04-9cf)](https://github.com/time-2023--04-9cf)
@@ -18,5 +19,5 @@ My course projects and notes of undergraduate courses in NJUAI
 
   
  
-##### 📅 Updated: May 2023
+##### 📅 Updated:June 2023
 [![Page Views Count](https://badges.toozhao.com/badges/01GYHDTSQX9KXBYG96T2V35KPH/green.svg)](https://badges.toozhao.com/stats/01GYHDTSQX9KXBYG96T2V35KPH "Get your own page views count badge on badges.toozhao.com")
