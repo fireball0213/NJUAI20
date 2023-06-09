@@ -123,19 +123,36 @@ def MLP_numpy_only(epochs, batch_size, learning_rate, active='sigmoid'):
     train_image, train_label, test_image, test_label = dataset_loader()
     model = MLP(784, 30, 10, active=active)
 
+    #计算网络的参数量
+    print()
+    print("the number of parameters is {}".format(model.W1.size + model.W2.size + model.b1.size + model.b2.size))
+    #网络的计算量
+    print("the number of flops is {}".format(2 * model.W1.size + 2 * model.W2.size + model.b1.size + model.b2.size))
+
     train_accuracy_list = []
     test_accuracy_list = []
+    #记录测试集上准确率最优的模型准确率，并输出。使用早听机制，当测试集上准确率连续5次没有出现最优后，停止训练
+    best_accuracy = 0
+    count = 0
     for epoch in range(epochs):
         model.train(train_image, train_label, batch_size, learning_rate)
         train_accuracy = model.evaluate(train_image, train_label)
         test_accuracy = model.evaluate(test_image, test_label)
         train_accuracy_list.append(train_accuracy)
         test_accuracy_list.append(test_accuracy)
+        if test_accuracy > best_accuracy:
+            best_accuracy = test_accuracy
+            count = 0
+        else:
+            count += 1
+        if count == 5:
+            break
         print("epoch:{}/{} train/test acc: {}/{} using {}".format(epoch, epochs, train_accuracy, test_accuracy, active))
+    print("the best accuracy is {} ----{}".format(best_accuracy, active))
 
     # 画出准确率随epoch变化的曲线，在图中同时对比训练准确率和测试准确率
-    plt.plot(range(epochs), train_accuracy_list, label='train')
-    plt.plot(range(epochs), test_accuracy_list, label='test')
+    plt.plot(range(len(train_accuracy_list)), train_accuracy_list, label='train')
+    plt.plot(range(len(test_accuracy_list)), test_accuracy_list, label='test')
     plt.xlabel('epochs')
     plt.ylabel('accuracy')
     plt.title('train vs test using ' + str(active))
@@ -144,7 +161,7 @@ def MLP_numpy_only(epochs, batch_size, learning_rate, active='sigmoid'):
 
 
 if __name__ == '__main__':
-    epochs = 30
+    epochs = 50
     batch_size = 128
     learning_rate = 0.01
 

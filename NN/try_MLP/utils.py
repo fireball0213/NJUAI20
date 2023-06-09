@@ -126,22 +126,26 @@ def load_mnist(path, kind='train'):
 def plot_mnist(path, flag='train'):
     train_images, train_labels = load_mnist(path, kind='train')
     test_images, test_labels = load_mnist(path, kind='t10k')
+    print('train_images.shape:', train_images.shape)
+    print('train_labels.shape:', train_labels.shape)
+    print('test_images.shape:', test_images.shape)
+    print('test_labels.shape:', test_labels.shape)
 
     # 查看数据集
     fig = plt.figure(figsize=(8, 8))
-    plt.title(flag)
-    for i in range(20):
-        ax = fig.add_subplot(4, 5, i + 1, xticks=[], yticks=[])
-        if flag == 'train':
-            images = np.reshape(train_images[i], [28, 28])
-            ax.imshow(images, cmap=plt.cm.binary, interpolation='nearest')
-            ax.text(0, 7, str(train_labels[i]))
-        else:
-            images = np.reshape(test_images[i], [28, 28])
-            ax.imshow(images, cmap=plt.cm.binary, interpolation='nearest')
-            ax.text(0, 7, str(test_labels[i]))
-    plt.tight_layout()
-    plt.show()
+    # plt.title(flag)
+    # for i in range(20):
+    #     ax = fig.add_subplot(4, 5, i + 1, xticks=[], yticks=[])
+    #     if flag == 'train':
+    #         images = np.reshape(train_images[i], [28, 28])
+    #         ax.imshow(images, cmap=plt.cm.binary, interpolation='nearest')
+    #         ax.text(0, 7, str(train_labels[i]))
+    #     else:
+    #         images = np.reshape(test_images[i], [28, 28])
+    #         ax.imshow(images, cmap=plt.cm.binary, interpolation='nearest')
+    #         ax.text(0, 7, str(test_labels[i]))
+    # plt.tight_layout()
+    # plt.show()
 
     # 查看标记的分布
     ax = fig.add_subplot(1, 1, 1)
