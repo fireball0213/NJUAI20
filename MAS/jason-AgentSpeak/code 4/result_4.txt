@@ -1,0 +1,22 @@
+Runtime Services (RTS) is running at 26.26.26.1:14112
+Agent mind inspector is running at http://26.26.26.1:3272
+[c] Waiting participants for task fix(computer)...
+[c] Waiting participants for task banana...
+[c] Sending CFP to [p1,pr,p2,p3,pn]
+[c] Sending CFP to [p1,pr,p2,p3,pn]
+[p2] Task is fix(computer)
+[p3] Task is fix(computer)
+[p1] Task is fix(computer)
+[p2] Task is banana
+[p3] Task is banana
+[p1] Task is banana
+[c] Sending untelling CFP to [p1,pr,p2,p3,pn]
+[p3] CNP 2 has been aborted
+[p1] CNP 2 has been aborted
+[p2] CNP 2 has been aborted
+[c] Aborted 2 has no winner
+[c] Offers are [offer(108.50486394141676,p1),offer(103.12538945976335,p3),offer(106.91108295940049,p2)]
+[c] Winner is p3 with 103.12538945976335
+[p1] I lost CNP 1.
+[p3] My proposal '103.12538945976335' won CNP 1 for fix(computer)!
+[p2] I lost CNP 1.

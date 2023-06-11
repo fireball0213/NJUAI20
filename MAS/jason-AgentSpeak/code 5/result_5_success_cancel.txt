@@ -1,0 +1,13 @@
+Runtime Services (RTS) is running at 26.26.26.1:11106
+Agent mind inspector is running at http://26.26.26.1:3272
+[c] Waiting participants for task fix(computer)...
+[c] Sending CFP to [p1,p2,pr,p3,pn]
+[p3] Task is fix(computer)
+[p1] Task is fix(computer)
+[p2] Task is fix(computer)
+[p2] I want to cancel 1
+[p2] I successfully canceled 1.
+[c] Offers are [offer(109.23661992039372,p1),offer(103.01030872001407,p3)]
+[c] Winner is p3 with 103.01030872001407
+[p1] I lost CNP 1.
+[p3] My proposal '103.01030872001407' won CNP 1 for fix(computer)!
