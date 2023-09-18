@@ -1,6 +1,9 @@
 # NJUAI20
 My course projects and notes of undergraduate courses in NJUAI  
 
+## 保研相关
+[2023南京大学人工智能学院(NJUAI)本科生开放日（保研夏令营）-知乎](https://zhuanlan.zhihu.com/p/657016123) 
+
 ## Course Projects  
 >In time-descending order
 * Optimize MLP : `NN/try_MLP`  [![github](https://img.shields.io/badge/time-2023--06-9cf)](https://github.com/time-2023--06-9cf)
